@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuranPath Institute - Learn Quran Online</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Playfair+Display:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Welcome Popup -->
+    <div class="welcome-popup-overlay" id="welcomePopup">
+        <div class="welcome-popup">
+            <button class="welcome-popup-close" id="closeWelcomePopup" aria-label="Close popup">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="welcome-popup-content">
+                <p class="welcome-popup-bismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
+                <div class="welcome-popup-icon">
+                    <i class="fas fa-book-quran"></i>
+                </div>
+                <h2 class="welcome-popup-heading">Welcome to <span>QuranPath!</span></h2>
+                <p class="welcome-popup-subheading">
+                    <i class="fas fa-gift"></i> 3 Days Free Trial <i class="fas fa-gift"></i>
+                </p>
+                <p class="welcome-popup-description">
+                    Begin your blessed journey to learn the Holy Quran with our certified expert tutors. 
+                    Experience personalized one-on-one sessions from the comfort of your home.
+                </p>
+                <div class="welcome-popup-features">
+                    <div class="welcome-popup-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Expert Tutors</span>
+                    </div>
+                    <div class="welcome-popup-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Flexible Timing</span>
+                    </div>
+                    <div class="welcome-popup-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Free Trial</span>
+                    </div>
+                </div>
+                <a href="registration.html" class="welcome-popup-cta">
+                    <i class="fas fa-paper-plane"></i> Enroll Now
+                </a>
+                <span class="welcome-popup-skip" id="skipWelcomePopup">Maybe Later</span>
+            </div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">Quran<span>Path</span></a>
+            </div>
+            <nav class="main-nav" id="mainNav">
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li class="dropdown">
+                        <a href="#courses-offer">Courses <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="#">Online Quran Reading Basics</a>
+                            <a href="#">Qaida Noorania Online</a>
+                            <a href="#">Quran Reading Online</a>
+                            <a href="#">Tajweed Quran Online</a>
+                            <a href="#">Quran Memorizing Online</a>
+                            <a href="#">Islamic Studies For Kids</a>
+                            <a href="#">Islamic Teachings Online</a>
+                        </div>
+                    </li>
+                    <li><a href="#faculty-slider">Tutors</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li class="dropdown">
+                        <a href="#">More <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="#">FAQs</a>
+                            <a href="#">Blogs</a>
+                            <a href="#">Privacy Policy</a>
+                            <a href="#">Refund Policy</a>
+                            <a href="#">Terms & Conditions</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <div class="trial-button">
+                <a href="registration.html" class="btn">3 Days Free Trial</a>
+            </div>
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Carousel -->
+    <div id="quranTeachingCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#quranTeachingCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#quranTeachingCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#quranTeachingCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+            <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://images.unsplash.com/photo-1609599006353-e629aaabfeae?w=1920&q=90" class="d-block w-100" alt="Holy Quran Majeed">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Learn Quran Online with Expert Tutors</h5>
+                    <p>Begin your blessed journey to understand and recite the Holy Quran with perfect Tajweed from the comfort of your home.</p>
+                    <a href="#registration-steps" class="btn btn-primary">Start Your Journey</a>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1585036156171-384164a8c675?w=1920&q=90" class="d-block w-100" alt="Quran Majeed Open">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Certified Scholars Guiding Your Path</h5>
+                    <p>Connect with highly qualified tutors from the USA and UK, dedicated to your spiritual progress.</p>
+                    <a href="#faculty-slider" class="btn btn-primary">Meet Our Tutors</a>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1542816417-0983c9c9ad53?w=1920&q=90" class="d-block w-100" alt="Beautiful Quran Pages">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Flexible & Convenient Online Classes</h5>
+                    <p>Personalized one-on-one lessons that fit your schedule, allowing you to learn anytime, anywhere in the world.</p>
+                    <a href="#pricing" class="btn btn-primary">Explore Plans</a>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#quranTeachingCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#quranTeachingCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!-- Courses Section -->
+    <section id="courses-offer" class="courses-offer-section">
+        <div class="container">
+            <h2>Our Courses</h2>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <i class="fas fa-book-reader"></i>
+                    <h3>Qaida Noorania</h3>
+                    <p>Start your Quranic journey by learning the foundational alphabets and pronunciation rules with expert guidance.</p>
+                </div>
+                <div class="course-card">
+                    <i class="fas fa-quran"></i>
+                    <h3>Quran Reading</h3>
+                    <p>Improve your recitation, fluency, and accuracy in reading the Holy Quran with personalized attention.</p>
+                </div>
+                <div class="course-card">
+                    <i class="fas fa-pray"></i>
+                    <h3>Tajweed Mastery</h3>
+                    <p>Master the intricate rules of Tajweed to recite the Quran beautifully and correctly as it was revealed.</p>
+                </div>
+                <div class="course-card">
+                    <i class="fas fa-mosque"></i>
+                    <h3>Quran Memorization</h3>
+                    <p>Embark on the noble path of Hifz (Quran memorization) with structured lessons and supportive teachers.</p>
+                </div>
+                <div class="course-card">
+                    <i class="fas fa-child"></i>
+                    <h3>Kids Islamic Studies</h3>
+                    <p>Engaging and interactive lessons for children to learn fundamental Islamic knowledge and core values.</p>
+                </div>
+                <div class="course-card">
+                    <i class="fas fa-hands-helping"></i>
+                    <h3>Islamic Teachings</h3>
+                    <p>Explore the core principles, ethics, and practices of Islam through comprehensive scholarly lessons.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Steps Section -->
+    <section id="registration-steps" class="registration-steps-section">
+        <div class="container">
+            <h2>Begin Your Journey in 3 Easy Steps</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-icon">1</div>
+                    <h3>Fill Registration Form</h3>
+                    <p>Complete our quick online form to book your Free Trial Class with one of our qualified Quran tutors.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-icon">2</div>
+                    <h3>Confirm Appointment</h3>
+                    <p>After registration, we'll schedule your trial class. Your teacher will contact you through Microsoft Teams.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-icon">3</div>
+                    <h3>Start Learning</h3>
+                    <p>Download Microsoft Teams, log in at your scheduled time, and your dedicated teacher will be ready to welcome you.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing-section">
+        <div class="container">
+            <h2>Flexible Plans & Affordable Fees</h2>
+            <div class="pricing-toggle-wrapper">
+                <div class="pricing-toggle">
+                    <button class="btn-pricing active" data-currency="uk">UK Plans</button>
+                    <button class="btn-pricing" data-currency="us">USA Plans</button>
+                    <div class="toggle-slider"></div>
+                </div>
+            </div>
+            <div class="pricing-plans uk-plans active">
+                <div class="plan-card">
+                    <h3>Starter</h3>
+                    <p>2 Days/Week</p>
+                    <div class="price">£30<span>/month</span></div>
+                    <ul>
+                        <li>30 Min Lessons</li>
+                        <li>8 Classes/Month</li>
+                        <li>4 Hours Total</li>
+                    </ul>
+                    <a href="registration.html" class="btn">Start Free Trial</a>
+                </div>
+                <div class="plan-card">
+                    <h3>Standard</h3>
+                    <p>3 Days/Week</p>
+                    <div class="price">£40<span>/month</span></div>
+                    <ul>
+                        <li>30 Min Lessons</li>
+                        <li>12 Classes/Month</li>
+                        <li>6 Hours Total</li>
+                    </ul>
+                    <a href="registration.html" class="btn">Start Free Trial</a>
+                </div>
+                <div class="plan-card">
+                    <h3>Premium</h3>
+                    <p>4 Days/Week</p>
+                    <div class="price">£50<span>/month</span></div>
+                    <ul>
+                        <li>30 Min Lessons</li>
+                        <li>16 Classes/Month</li>
+                        <li>8 Hours Total</li>
+                    </ul>
+                    <a href="registration.html" class="btn">Start Free Trial</a>
+                </div>
+                <div class="plan-card">
+                    <h3>Intensive</h3>
+                    <p>5 Days/Week</p>
+                    <div class="price">£55<span>/month</span></div>
+                    <ul>
+                        <li>30 Min Lessons</li>
+                        <li>20 Classes/Month</li>
+                        <li>10 Hours Total</li>
+                    </ul>
+                    <a href="registration.html" class="btn">Start Free Trial</a>
+                </div>
+            </div>
+            <div class="pricing-plans us-plans">
+                <div class="plan-card">
+                    <h3>Starter</h3>
+                    <p>2 Days/Week</p>
+                    <div class="price">$35<span>/month</span></div>
+                    <ul>
+                        <li>30 Min Lessons</li>
+                        <li>8 Classes/Month</li>
+                        <li>4 Hours Total</li>
+                    </ul>
+                    <a href="registration.html" class="btn">Start Free Trial</a>
+                </div>
+                <div class="plan-card">
+                    <h3>Standard</h3>
+                    <p>3 Days/Week</p>
+                    <div class="price">$45<span>/month</span></div>
+                    <ul>
+                        <li>30 Min Lessons</li>
+                        <li>12 Classes/Month</li>
+                        <li>6 Hours Total</li>
+                    </ul>
+                    <a href="registration.html" class="btn">Start Free Trial</a>
+                </div>
+                <div class="plan-card">
+                    <h3>Premium</h3>
+                    <p>4 Days/Week</p>
+                    <div class="price">$55<span>/month</span></div>
+                    <ul>
+                        <li>30 Min Lessons</li>
+                        <li>16 Classes/Month</li>
+                        <li>8 Hours Total</li>
+                    </ul>
+                    <a href="registration.html" class="btn">Start Free Trial</a>
+                </div>
+                <div class="plan-card">
+                    <h3>Intensive</h3>
+                    <p>5 Days/Week</p>
+                    <div class="price">$65<span>/month</span></div>
+                    <ul>
+                        <li>30 Min Lessons</li>
+                        <li>20 Classes/Month</li>
+                        <li>10 Hours Total</li>
+                    </ul>
+                    <a href="registration.html" class="btn">Start Free Trial</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Methods Section -->
+    <section id="payment-methods" class="payment-methods-section">
+        <div class="container">
+            <h2>Secure Payment Methods</h2>
+            <div class="payment-icons">
+                <i class="fab fa-cc-visa"></i>
+                <i class="fab fa-cc-mastercard"></i>
+                <i class="fab fa-cc-paypal"></i>
+                <i class="fab fa-cc-stripe"></i>
+                <i class="fab fa-apple-pay"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Faculty Section -->
+    <section id="faculty-slider" class="faculty-slider-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Meet Our Expert Tutors</h2>
+                <p class="section-subtitle">Our certified Quran teachers are dedicated to guiding you on your spiritual journey</p>
+            </div>
+            <div class="faculty-slider-container">
+                <div class="faculty-card">
+                    <div class="faculty-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?w=800&h=900&fit=crop&crop=faces" alt="Tutor from USA">
+                        <div class="faculty-overlay">
+                            <div class="faculty-social">
+                                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faculty-info">
+                        <h3><i class="fas fa-user-circle"></i> Qari Abdullah</h3>
+                        <p class="designation">Head Quran Teacher</p>
+                        <p class="experience"><i class="fas fa-certificate"></i> Ijazah Certified | 15+ Years</p>
+                    </div>
+                </div>
+                <div class="faculty-card">
+                    <div class="faculty-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=800&h=900&fit=crop&crop=faces" alt="Tutor from UK">
+                        <div class="faculty-overlay">
+                            <div class="faculty-social">
+                                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faculty-info">
+                        <h3><i class="fas fa-user-circle"></i> Ustadha Ayesha</h3>
+                        <p class="designation">Female Quran Teacher</p>
+                        <p class="experience"><i class="fas fa-certificate"></i> Ijazah Certified | 10+ Years</p>
+                    </div>
+                </div>
+                <div class="faculty-card">
+                    <div class="faculty-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?w=800&h=900&fit=crop&crop=faces" alt="Quran Tutor in Classroom">
+                        <div class="faculty-overlay">
+                            <div class="faculty-social">
+                                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faculty-info">
+                        <h3><i class="fas fa-user-circle"></i> Hafiz Bilal</h3>
+                        <p class="designation">Tajweed Specialist</p>
+                        <p class="experience"><i class="fas fa-certificate"></i> Ijazah Certified | 12+ Years</p>
+                    </div>
+                </div>
+                <div class="faculty-card">
+                    <div class="faculty-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?w=800&h=900&fit=crop&crop=faces" alt="Online Female Tutor">
+                        <div class="faculty-overlay">
+                            <div class="faculty-social">
+                                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faculty-info">
+                        <h3><i class="fas fa-user-circle"></i> Ustadha Fatima</h3>
+                        <p class="designation">Hifz Teacher</p>
+                        <p class="experience"><i class="fas fa-certificate"></i> Hafiza | 8+ Years</p>
+                    </div>
+                </div>
+                <div class="faculty-card">
+                    <div class="faculty-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=800&h=900&fit=crop&crop=faces" alt="Friendly Male Tutor">
+                        <div class="faculty-overlay">
+                            <div class="faculty-social">
+                                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faculty-info">
+                        <h3><i class="fas fa-user-circle"></i> Maulana Usman</h3>
+                        <p class="designation">Qaida & Reading</p>
+                        <p class="experience"><i class="fas fa-certificate"></i> Certified | 7+ Years</p>
+                    </div>
+                </div>
+                <div class="faculty-card">
+                    <div class="faculty-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=800&h=900&fit=crop&crop=faces" alt="Smiling Female Tutor">
+                        <div class="faculty-overlay">
+                            <div class="faculty-social">
+                                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faculty-info">
+                        <h3><i class="fas fa-user-circle"></i> Ustadha Khadija</h3>
+                        <p class="designation">Kids Islamic Studies</p>
+                        <p class="experience"><i class="fas fa-certificate"></i> Certified | 6+ Years</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials-section">
+        <div class="container">
+            <h2>What Our Students Say</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial-card">
+                    <p>"My daughter has been taking classes with different institutes, but the biggest impact I noticed was with Sheikh Ahmad from QuranPath. She is becoming a confident reader who wants to learn more every day."</p>
+                    <h4>Sabiha Rahman</h4>
+                    <span>United Kingdom</span>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Alhamdulillah, I really enjoyed learning with my tutor every week. He builds my confidence up, and if I get something wrong, he guides me patiently on how to improve."</p>
+                    <h4>Asad Qureshi</h4>
+                    <span>Canada</span>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Your service is very accommodating. We are very happy and the children are doing well MashaAllah. May Allah reward you all. Ameen."</p>
+                    <h4>Adeel Khan</h4>
+                    <span>United States</span>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Ustaz Ibrahim has been teaching our son for the last two months. Throughout, he has been professional and enthusiastic. Huge progress has been made in each tutoring lesson."</p>
+                    <h4>Mohammad Aariz</h4>
+                    <span>UAE</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-col">
+                <h3>Quran<span>Path</span></h3>
+                <p>QuranPath Institute exists to provide worldwide students with eminent education of the Holy Quran and the science behind each holy word. We are globally recognized for exceptional online teaching and outstanding support.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="#courses-offer">Our Courses</a></li>
+                    <li><a href="#faculty-slider">Our Tutors</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Info</h3>
+                <div class="footer-contact-info">
+                    <div><i class="fas fa-phone-alt"></i> <span>UK: +44 7848 008574</span></div>
+                    <div><i class="fas fa-phone-alt"></i> <span>USA: +1 914 520 0321</span></div>
+                    <div><i class="fas fa-envelope"></i> <span>info@quranpath.com</span></div>
+                    <div><i class="fas fa-map-marker-alt"></i> <span>2 Frederick Street, Kings Cross, London, WC1X 0ND</span></div>
+                </div>
+            </div>
+            <div class="footer-col newsletter-signup">
+                <h3>Newsletter</h3>
+                <p>Subscribe to our newsletter for the latest updates and special offers.</p>
+                <form action="#">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 QuranPath Institute. All Rights Reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Refund Policy</a>
+                <a href="#">Terms & Conditions</a>
+            </div>
+            <div class="payment-footer-icons">
+                <i class="fab fa-cc-visa"></i>
+                <i class="fab fa-cc-mastercard"></i>
+                <i class="fab fa-cc-paypal"></i>
+                <i class="fab fa-cc-stripe"></i>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Left Side Message Widget -->
+    <div class="message-widget" id="messageWidget">
+        <div class="message-chat-box" id="messageChatBox">
+            <div class="message-chat-header">
+                <div class="header-avatar">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h4>How Can We Help?</h4>
+                <p>Get in touch with us</p>
+                <div class="online-status">
+                    <span class="dot"></span>
+                    <span>Online now</span>
+                </div>
+                <button class="message-chat-close" id="closeMessageChat">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="message-chat-body">
+                <div class="message-quick-options">
+                    <label><i class="fas fa-bolt"></i> Quick Options</label>
+                    <div class="quick-option-buttons">
+                        <button type="button" class="quick-option-btn" data-message="I want to know about course fees.">
+                            <i class="fas fa-dollar-sign"></i> Pricing
+                        </button>
+                        <button type="button" class="quick-option-btn" data-message="I want to start free trial.">
+                            <i class="fas fa-gift"></i> Free Trial
+                        </button>
+                        <button type="button" class="quick-option-btn" data-message="Tell me about the courses.">
+                            <i class="fas fa-book"></i> Courses
+                        </button>
+                        <button type="button" class="quick-option-btn" data-message="I need help with my classes.">
+                            <i class="fas fa-tools"></i> Support
+                        </button>
+                    </div>
+                </div>
+                <div class="message-form-section">
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" id="msgUserName" placeholder="Enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="msgUserEmail" placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label>Your Message</label>
+                        <textarea id="msgUserMessage" placeholder="Type your message...">Hello! I am interested in your Quran courses. Please guide me.</textarea>
+                    </div>
+                    <div class="message-contact-options">
+                        <a href="#" class="contact-option-btn whatsapp" id="msgSendWhatsApp">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                        <a href="#" class="contact-option-btn email" id="msgSendEmail">
+                            <i class="fas fa-envelope"></i> Email
+                        </a>
+                    </div>
+                    <button type="button" class="message-submit-btn" id="msgSubmitBtn">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </div>
+            </div>
+            <div class="message-chat-footer">
+                <i class="fas fa-lock"></i> Your information is secure
+            </div>
+        </div>
+        <button class="message-toggle-btn" id="messageToggleBtn" aria-label="Open Message Chat">
+            <i class="fas fa-comment-dots"></i>
+            <i class="fas fa-times"></i>
+            <span class="notification-badge">1</span>
+        </button>
+    </div>
+
+    <!-- WhatsApp Integration Widget -->
+    <div class="whatsapp-widget" id="whatsappWidget">
+        <!-- Chat Box -->
+        <div class="whatsapp-chat-box" id="whatsappChatBox">
+            <!-- Header -->
+            <div class="whatsapp-chat-header">
+                <div class="header-icon">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <div class="header-info">
+                    <h4>QuranPath Support</h4>
+                    <p>Typically replies within minutes</p>
+                </div>
+                <button class="whatsapp-chat-close" id="closeWhatsappChat">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <!-- Body -->
+            <div class="whatsapp-chat-body">
+                <!-- Welcome Message -->
+                <div class="whatsapp-welcome-message">
+                    <p>Assalamu Alaikum! 👋<br>Welcome to QuranPath Institute. How can we help you today?</p>
+                    <span class="time">Just now</span>
+                </div>
+                
+                <!-- Message Input -->
+                <div class="whatsapp-message-input">
+                    <label><i class="fas fa-edit"></i> Your Message</label>
+                    <textarea id="whatsappMessage" placeholder="Type your message here...">Hello! I am interested in the Quran courses. Please guide me about the classes and fee structure.</textarea>
+                    
+                    <!-- Country Selection -->
+                    <div class="whatsapp-country-selection">
+                        <label><i class="fas fa-globe"></i> Select Your Region</label>
+                        <div class="country-buttons">
+                            <button type="button" class="country-btn selected" data-country="uk" data-number="447848008574">
+                                <span class="flag">🇬🇧</span>
+                                <span class="country-name">UK</span>
+                            </button>
+                            <button type="button" class="country-btn" data-country="usa" data-number="19145200321">
+                                <span class="flag">🇺🇸</span>
+                                <span class="country-name">USA</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Send Button -->
+                    <button type="button" class="whatsapp-send-btn" id="sendWhatsappMessage">
+                        <i class="fab fa-whatsapp"></i> Start Chat
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <div class="whatsapp-powered-by">
+                Powered by <a href="#">QuranPath Institute</a>
+            </div>
+        </div>
+        
+        <!-- Toggle Button -->
+        <button class="whatsapp-toggle-btn" id="whatsappToggleBtn" aria-label="Open WhatsApp Chat">
+            <i class="fab fa-whatsapp"></i>
+        </button>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
