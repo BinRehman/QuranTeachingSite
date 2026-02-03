@@ -1,23 +1,64 @@
 /* ================================================
-   Color Palette - QuranPath Theme
-   Main: Deep Maroon (#580033)
-   Secondary: Gold (#c1ae69)
-   Background: White
+   Color Palette - QuranPath Premium Brand Theme
+   Primary: #4b002b (Deep Burgundy)
+   Secondary: #c2b169 (Gold)
+   Neutral: #ffffff (White)
    ================================================ */
 :root {
-    --primary-green: #580033;          /* primary brand color (deep maroon) */
-    --primary-green-light: #8c3366;    /* lighter maroon for gradients */
-    --primary-green-dark: #32001d;     /* darker maroon for depth */
-    --accent-gold: #c1ae69;            /* secondary gold highlight */
-    --accent-gold-light: #e0d49a;      /* lighter gold for hovers */
-    --light-background: #FFFFFF;
-    --text-dark-grey: #222222;
-    --text-medium-grey: #666666;
-    --section-light-grey: #F8F9FA;
-    --border-light-grey: #E0E0E0;
+    /* Primary Colors */
+    --primary: #4b002b;
+    --primary-light: #6d1a4a;
+    --primary-dark: #2a0018;
+    --primary-hover: #3d0023;
+    
+    /* Secondary/Accent Colors */
+    --secondary: #c2b169;
+    --secondary-light: #d4c78a;
+    --secondary-dark: #a89a52;
+    --secondary-hover: #b5a45c;
+    
+    /* Neutral Colors */
+    --white: #ffffff;
+    --off-white: #fafafa;
+    --light-grey: #f5f5f5;
+    --medium-grey: #e0e0e0;
+    --dark-grey: #666666;
+    --text-primary: #1a1a1a;
+    --text-secondary: #4a4a4a;
+    
+    /* Legacy variable mappings (for backward compatibility) */
+    --primary-green: var(--primary);
+    --primary-green-light: var(--primary-light);
+    --primary-green-dark: var(--primary-dark);
+    --accent-gold: var(--secondary);
+    --accent-gold-light: var(--secondary-light);
+    --light-background: var(--white);
+    --text-dark-grey: var(--text-primary);
+    --text-medium-grey: var(--text-secondary);
+    --section-light-grey: var(--light-grey);
+    --border-light-grey: var(--medium-grey);
+    
+    /* Shadows */
+    --shadow-xs: 0 1px 3px rgba(75, 0, 43, 0.06);
+    --shadow-sm: 0 2px 8px rgba(75, 0, 43, 0.08);
+    --shadow-md: 0 4px 16px rgba(75, 0, 43, 0.1);
+    --shadow-lg: 0 8px 32px rgba(75, 0, 43, 0.12);
+    --shadow-xl: 0 16px 48px rgba(75, 0, 43, 0.15);
     --shadow-light: rgba(0, 0, 0, 0.08);
     --shadow-medium: rgba(0, 0, 0, 0.12);
     --shadow-heavy: rgba(0, 0, 0, 0.2);
+    
+    /* Transitions */
+    --transition-fast: 0.15s ease;
+    --transition-base: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    
+    /* Border Radius */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 50px;
 }
 
 /* ================================================
@@ -35,8 +76,8 @@ html {
 
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: var(--light-background);
-    color: var(--text-dark-grey);
+    background-color: var(--white);
+    color: var(--text-primary);
     line-height: 1.7;
     font-size: 16px;
     overflow-x: hidden;
@@ -53,14 +94,14 @@ body {
    ================================================ */
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', serif;
-    color: var(--text-dark-grey);
+    color: var(--text-primary);
     margin-top: 0;
     line-height: 1.3;
 }
 
 h2 {
     font-size: 2.5em;
-    color: var(--primary-green);
+    color: var(--primary);
     margin-bottom: 50px;
     position: relative;
     display: inline-block;
@@ -70,7 +111,7 @@ h2::after {
     content: '';
     width: 80px;
     height: 4px;
-    background: linear-gradient(90deg, var(--primary-green), var(--accent-gold));
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -83,43 +124,59 @@ h2::after {
    ================================================ */
 .btn {
     display: inline-block;
-    background: linear-gradient(135deg, var(--primary-green), var(--primary-green-light));
-    color: #ffffff; /* all primary-themed buttons use white text */
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: var(--white);
     padding: 14px 32px;
     text-decoration: none;
-    border-radius: 50px;
+    border-radius: var(--radius-full);
     font-weight: 600;
     font-size: 1em;
-    transition: all 0.3s ease;
+    transition: var(--transition-base);
     border: none;
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(46, 125, 50, 0.3);
+    box-shadow: 0 4px 15px rgba(75, 0, 43, 0.25);
 }
 
 .btn:hover {
-    background: linear-gradient(135deg, var(--primary-green-dark), var(--primary-green));
-    box-shadow: 0 6px 20px rgba(88, 0, 51, 0.45);
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    box-shadow: 0 6px 20px rgba(75, 0, 43, 0.35);
     transform: translateY(-3px);
 }
 
-.btn-gold {
-    background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light));
-    color: var(--text-dark-grey);
-    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+.btn-gold,
+.btn-secondary {
+    background: linear-gradient(135deg, var(--secondary), var(--secondary-light));
+    color: var(--primary-dark);
+    box-shadow: 0 4px 15px rgba(194, 177, 105, 0.3);
 }
 
-.btn-gold:hover {
-    background: linear-gradient(135deg, #B8860B, var(--accent-gold));
-    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+.btn-gold:hover,
+.btn-secondary:hover {
+    background: linear-gradient(135deg, var(--secondary-dark), var(--secondary));
+    box-shadow: 0 6px 20px rgba(194, 177, 105, 0.4);
+}
+
+/* Outline Button */
+.btn-outline {
+    background: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    box-shadow: none;
+}
+
+.btn-outline:hover {
+    background: var(--primary);
+    color: var(--white);
+    box-shadow: 0 4px 15px rgba(75, 0, 43, 0.25);
 }
 
 /* ================================================
    Header & Navigation
    ================================================ */
 .header {
-    background-color: var(--light-background);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
     padding: 15px 0;
-    box-shadow: 0 2px 20px var(--shadow-light);
+    box-shadow: var(--shadow-lg);
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -133,16 +190,21 @@ h2::after {
 }
 
 .logo a {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8em;
-    font-weight: bold;
-    color: var(--primary-green);
+    display: flex;
+    align-items: center;
     text-decoration: none;
-    white-space: nowrap;
+    transition: var(--transition-base);
 }
 
-.logo a span {
-    color: var(--accent-gold);
+.logo a img {
+    max-height: 70px;
+    max-width: 180px;
+    width: auto;
+    object-fit: contain;
+}
+
+.logo a:hover {
+    opacity: 0.9;
 }
 
 /* Main Navigation */
@@ -167,26 +229,26 @@ h2::after {
 
 .main-nav ul li a {
     text-decoration: none;
-    color: var(--text-dark-grey);
+    color: rgba(255, 255, 255, 0.9);
     font-weight: 500;
     font-size: 0.95em;
     padding: 10px 14px;
     display: flex;
     align-items: center;
     gap: 6px;
-    border-radius: 6px;
-    transition: all 0.3s ease;
+    border-radius: var(--radius-sm);
+    transition: var(--transition-base);
 }
 
 .main-nav ul li a i {
     font-size: 0.7em;
-    transition: transform 0.3s ease;
+    transition: transform var(--transition-base);
 }
 
 .main-nav ul li a.active,
 .main-nav ul li a:hover {
-    color: var(--primary-green);
-    background-color: rgba(46, 125, 50, 0.08);
+    color: var(--white);
+    background-color: rgba(255, 255, 255, 0.15);
 }
 
 .main-nav ul li.dropdown:hover > a i {
@@ -199,15 +261,15 @@ h2::after {
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: var(--light-background);
+    background-color: var(--white);
     min-width: 260px;
-    box-shadow: 0 10px 40px var(--shadow-medium);
+    box-shadow: var(--shadow-lg);
     z-index: 1000;
-    border-radius: 12px;
+    border-radius: var(--radius-lg);
     overflow: hidden;
     margin-top: 10px;
-    border: 1px solid var(--border-light-grey);
-    animation: dropdownFadeIn 0.3s ease;
+    border: 1px solid var(--medium-grey);
+    animation: dropdownFadeIn var(--transition-base);
 }
 
 @keyframes dropdownFadeIn {
@@ -228,25 +290,25 @@ h2::after {
     left: 20px;
     width: 50px;
     height: 3px;
-    background: linear-gradient(90deg, var(--primary-green), var(--accent-gold));
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
     border-radius: 0 0 3px 3px;
 }
 
-.dropdown-content a {
-    color: var(--text-dark-grey);
+.main-nav .dropdown-content a {
+    color: var(--text-primary);
     padding: 14px 20px;
     text-decoration: none;
     display: block;
     font-weight: 400;
     font-size: 0.95em;
-    transition: all 0.3s ease;
+    transition: var(--transition-base);
     border-left: 3px solid transparent;
 }
 
-.dropdown-content a:hover {
-    background-color: var(--section-light-grey);
-    color: var(--primary-green);
-    border-left-color: var(--primary-green);
+.main-nav .dropdown-content a:hover {
+    background-color: var(--light-grey);
+    color: var(--primary);
+    border-left-color: var(--secondary);
     padding-left: 25px;
 }
 
@@ -256,10 +318,19 @@ h2::after {
 
 /* Trial Button */
 .trial-button .btn {
-    color: white;
+    background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+    color: var(--primary-dark);
     padding: 12px 24px;
     font-size: 0.95em;
     white-space: nowrap;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(194, 177, 105, 0.4);
+}
+
+.trial-button .btn:hover {
+    background: linear-gradient(135deg, var(--secondary-light), var(--secondary));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(194, 177, 105, 0.5);
 }
 
 /* Mobile Menu Toggle */
@@ -275,13 +346,14 @@ h2::after {
 .mobile-menu-toggle span {
     width: 28px;
     height: 3px;
-    background-color: var(--primary-green);
+    background-color: var(--white);
     border-radius: 3px;
-    transition: all 0.3s ease;
+    transition: var(--transition-base);
 }
 
 .mobile-menu-toggle.active span:nth-child(1) {
     transform: rotate(45deg) translate(6px, 6px);
+    background-color: var(--secondary);
 }
 
 .mobile-menu-toggle.active span:nth-child(2) {
@@ -290,6 +362,7 @@ h2::after {
 
 .mobile-menu-toggle.active span:nth-child(3) {
     transform: rotate(-45deg) translate(6px, -6px);
+    background-color: var(--secondary);
 }
 
 /* ================================================
@@ -320,19 +393,19 @@ h2::after {
     left: 0;
     right: 0;
     bottom: 0;
-    /* Overlay using primary maroon theme color with subtle gold accent */
+    /* Overlay using primary brand color */
     background: linear-gradient(
         135deg,
-        rgba(88, 0, 51, 0.75) 0%,
-        rgba(88, 0, 51, 0.65) 50%,
-        rgba(0, 0, 0, 0.55) 100%
+        rgba(75, 0, 43, 0.8) 0%,
+        rgba(75, 0, 43, 0.65) 50%,
+        rgba(0, 0, 0, 0.5) 100%
     );
     z-index: 1;
-    transition: opacity 0.5s ease;
+    transition: var(--transition-slow);
 }
 
 #quranTeachingCarousel .carousel-item:hover::before {
-    opacity: 0.85;
+    opacity: 0.9;
 }
 
 #quranTeachingCarousel .carousel-caption {
@@ -347,7 +420,7 @@ h2::after {
     font-family: 'Playfair Display', serif;
     font-size: 3.2em;
     font-weight: bold;
-    color: var(--light-background);
+    color: var(--white);
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     margin-bottom: 20px;
     line-height: 1.2;
@@ -355,7 +428,7 @@ h2::after {
 
 #quranTeachingCarousel .carousel-caption p {
     font-size: 1.25em;
-    color: var(--light-background);
+    color: var(--white);
     opacity: 0.95;
     margin-bottom: 35px;
     max-width: 700px;
@@ -364,22 +437,23 @@ h2::after {
 }
 
 #quranTeachingCarousel .carousel-caption .btn-primary {
-    /* Slider CTA uses secondary gold theme color */
-    background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light));
+    background: linear-gradient(135deg, var(--secondary), var(--secondary-light));
     border: none;
-    color: var(--primary-green-dark);
-    padding: 15px 40px;
-    border-radius: 50px;
-    font-weight: 600;
+    color: var(--primary-dark);
+    padding: 16px 45px;
+    border-radius: var(--radius-full);
+    font-weight: 700;
     font-size: 1.1em;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 20px rgba(88, 0, 51, 0.45);
+    transition: var(--transition-base);
+    box-shadow: 0 4px 20px rgba(194, 177, 105, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 #quranTeachingCarousel .carousel-caption .btn-primary:hover {
-    background: linear-gradient(135deg, #a89652, var(--accent-gold));
+    background: linear-gradient(135deg, var(--secondary-dark), var(--secondary));
     transform: translateY(-3px);
-    box-shadow: 0 6px 25px rgba(193, 174, 105, 0.6);
+    box-shadow: 0 8px 30px rgba(194, 177, 105, 0.5);
 }
 
 #quranTeachingCarousel .carousel-indicators {
@@ -387,17 +461,17 @@ h2::after {
 }
 
 #quranTeachingCarousel .carousel-indicators button {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.4);
     height: 4px;
     width: 40px;
     border: none;
     border-radius: 2px;
     margin: 0 6px;
-    transition: all 0.3s ease;
+    transition: var(--transition-base);
 }
 
 #quranTeachingCarousel .carousel-indicators button.active {
-    background-color: var(--accent-gold);
+    background-color: var(--secondary);
     width: 60px;
 }
 
@@ -405,7 +479,7 @@ h2::after {
 #quranTeachingCarousel .carousel-control-next {
     width: 60px;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: var(--transition-base);
 }
 
 #quranTeachingCarousel:hover .carousel-control-prev,
@@ -431,7 +505,7 @@ section {
 
 /* Courses Section */
 .courses-offer-section {
-    background-color: var(--light-background);
+    background-color: var(--white);
     padding: 100px 0;
 }
 
@@ -443,15 +517,15 @@ section {
 }
 
 .course-card {
-    background-color: var(--light-background);
+    background-color: var(--white);
     padding: 40px 30px;
-    border-radius: 16px;
-    box-shadow: 0 10px 40px var(--shadow-light);
-    transition: all 0.4s ease;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-base);
     text-align: center;
     position: relative;
     overflow: hidden;
-    border: 1px solid var(--border-light-grey);
+    border: 1px solid var(--medium-grey);
 }
 
 .course-card::before {
@@ -461,41 +535,53 @@ section {
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, var(--primary-green), var(--accent-gold));
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
 }
 
 .course-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 50px var(--shadow-medium);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--secondary);
 }
 
 .course-card i {
     font-size: 3em;
-    color: var(--primary-green);
+    color: var(--primary);
     margin-bottom: 25px;
     display: inline-block;
     width: 80px;
     height: 80px;
     line-height: 80px;
-    background: linear-gradient(135deg, rgba(46, 125, 50, 0.1), rgba(212, 175, 55, 0.1));
+    background: linear-gradient(135deg, rgba(75, 0, 43, 0.08), rgba(194, 177, 105, 0.1));
     border-radius: 50%;
+    transition: var(--transition-base);
+}
+
+.course-card:hover i {
+    background: linear-gradient(135deg, rgba(75, 0, 43, 0.15), rgba(194, 177, 105, 0.2));
+    color: var(--secondary-dark);
 }
 
 .course-card h3 {
     font-size: 1.5em;
-    color: var(--primary-green);
+    color: var(--primary);
     margin-bottom: 15px;
+    transition: var(--transition-base);
+}
+
+.course-card:hover h3 {
+    color: var(--primary-light);
 }
 
 .course-card p {
-    color: var(--text-medium-grey);
+    color: var(--text-secondary);
     font-size: 1em;
     line-height: 1.6;
 }
 
 /* Registration Steps Section */
 .registration-steps-section {
-    background: linear-gradient(135deg, var(--section-light-grey) 0%, #E8F5E9 100%);
+    background: linear-gradient(135deg, var(--light-grey) 0%, rgba(75, 0, 43, 0.03) 100%);
     padding: 100px 0;
 }
 
@@ -507,20 +593,21 @@ section {
 }
 
 .step-card {
-    background-color: var(--light-background);
+    background-color: var(--white);
     padding: 40px 30px;
-    border-radius: 16px;
-    box-shadow: 0 10px 40px var(--shadow-light);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
     text-align: center;
     position: relative;
     padding-top: 80px;
-    border: 1px solid var(--border-light-grey);
-    transition: all 0.4s ease;
+    border: 1px solid var(--medium-grey);
+    transition: var(--transition-base);
 }
 
 .step-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 50px var(--shadow-medium);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--secondary);
 }
 
 .step-icon {
@@ -528,8 +615,8 @@ section {
     top: -30px;
     left: 50%;
     transform: translateX(-50%);
-    background: linear-gradient(135deg, var(--primary-green), var(--primary-green-light));
-    color: var(--light-background);
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: var(--white);
     width: 70px;
     height: 70px;
     border-radius: 50%;
@@ -538,26 +625,32 @@ section {
     align-items: center;
     font-size: 1.8em;
     font-weight: bold;
-    box-shadow: 0 8px 25px rgba(46, 125, 50, 0.4);
-    border: 4px solid var(--light-background);
+    box-shadow: 0 8px 25px rgba(75, 0, 43, 0.35);
+    border: 4px solid var(--white);
+    transition: var(--transition-base);
+}
+
+.step-card:hover .step-icon {
+    transform: translateX(-50%) scale(1.05);
+    box-shadow: 0 10px 30px rgba(75, 0, 43, 0.4);
 }
 
 .step-card h3 {
     font-size: 1.4em;
-    color: var(--primary-green);
+    color: var(--primary);
     margin-top: 15px;
     margin-bottom: 15px;
 }
 
 .step-card p {
-    color: var(--text-medium-grey);
+    color: var(--text-secondary);
     font-size: 1em;
     line-height: 1.6;
 }
 
 /* Pricing Section */
 .pricing-section {
-    background-color: var(--light-background);
+    background-color: var(--white);
     padding: 100px 0;
 }
 
@@ -570,37 +663,38 @@ section {
 .pricing-toggle {
     display: inline-flex;
     align-items: center;
-    background-color: var(--section-light-grey);
-    border-radius: 50px;
+    background-color: var(--light-grey);
+    border-radius: var(--radius-full);
     padding: 6px;
     position: relative;
-    border: 2px solid var(--border-light-grey);
+    border: 2px solid var(--medium-grey);
     gap: 0;
+    box-shadow: var(--shadow-xs);
 }
 
 .btn-pricing {
     background-color: transparent;
-    color: var(--text-medium-grey);
+    color: var(--text-secondary);
     border: none;
     padding: 14px 45px;
     font-size: 1.05em;
     font-weight: 600;
     cursor: pointer;
-    border-radius: 50px;
-    transition: all 0.3s ease;
+    border-radius: var(--radius-full);
+    transition: var(--transition-base);
     position: relative;
     z-index: 2;
     min-width: 140px;
 }
 
 .btn-pricing:hover {
-    color: var(--primary-green);
+    color: var(--primary);
 }
 
 .btn-pricing.active {
-    background: linear-gradient(135deg, var(--primary-green), var(--primary-green-light));
-    color: var(--light-background);
-    box-shadow: 0 4px 15px rgba(46, 125, 50, 0.3);
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: var(--white);
+    box-shadow: 0 4px 15px rgba(75, 0, 43, 0.3);
 }
 
 .toggle-slider {
@@ -609,9 +703,9 @@ section {
     left: 6px;
     width: calc(50% - 6px);
     height: calc(100% - 12px);
-    background: linear-gradient(135deg, var(--primary-green), var(--primary-green-light));
-    border-radius: 50px;
-    transition: transform 0.3s ease;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    border-radius: var(--radius-full);
+    transition: var(--transition-base);
     z-index: 1;
     display: none; /* Using active class instead */
 }
@@ -630,13 +724,13 @@ section {
 
 .plan-card {
     flex: 0 0 260px;
-    background-color: var(--light-background);
+    background-color: var(--white);
     padding: 35px 25px;
-    border-radius: 20px;
-    box-shadow: 0 10px 40px var(--shadow-light);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
     text-align: center;
-    transition: all 0.4s ease;
-    border: 2px solid var(--border-light-grey);
+    transition: var(--transition-base);
+    border: 2px solid var(--medium-grey);
     position: relative;
     overflow: hidden;
 }
@@ -648,23 +742,23 @@ section {
     left: 0;
     right: 0;
     height: 5px;
-    background: linear-gradient(90deg, var(--primary-green), var(--accent-gold));
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
 }
 
 .plan-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 50px var(--shadow-medium);
-    border-color: var(--primary-green);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--secondary);
 }
 
 .plan-card h3 {
     font-size: 1.6em;
-    color: var(--primary-green);
+    color: var(--primary);
     margin-bottom: 8px;
 }
 
 .plan-card > p {
-    color: var(--text-medium-grey);
+    color: var(--text-secondary);
     margin-bottom: 20px;
     font-size: 0.95em;
 }
@@ -672,14 +766,14 @@ section {
 .plan-card .price {
     font-size: 2.8em;
     font-weight: bold;
-    color: var(--primary-green);
+    color: var(--primary);
     margin-bottom: 20px;
 }
 
 .plan-card .price span {
     font-size: 0.35em;
     font-weight: normal;
-    color: var(--text-medium-grey);
+    color: var(--text-secondary);
 }
 
 .plan-card ul {
@@ -690,10 +784,10 @@ section {
 
 .plan-card ul li {
     margin-bottom: 10px;
-    color: var(--text-medium-grey);
+    color: var(--text-secondary);
     font-size: 0.95em;
     padding: 8px 0;
-    border-bottom: 1px solid var(--border-light-grey);
+    border-bottom: 1px solid var(--medium-grey);
 }
 
 .plan-card ul li:last-child {
@@ -703,23 +797,23 @@ section {
 .plan-card .btn {
     width: 100%;
     padding: 12px 20px;
-    color: #ffffff;
+    color: var(--white);
 }
 
 /* Payment Methods Section */
 .payment-methods-section {
-    background: linear-gradient(135deg, var(--primary-green-dark), var(--primary-green));
-    color: var(--light-background);
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    color: var(--white);
     padding: 80px 0;
 }
 
 .payment-methods-section h2 {
-    color: var(--light-background);
+    color: var(--white);
     margin-bottom: 40px;
 }
 
 .payment-methods-section h2::after {
-    background: linear-gradient(90deg, var(--accent-gold), var(--accent-gold-light));
+    background: linear-gradient(90deg, var(--secondary), var(--secondary-light));
 }
 
 .payment-icons {
@@ -732,20 +826,20 @@ section {
 
 .payment-icons i {
     font-size: 3.5em;
-    color: var(--light-background);
+    color: var(--white);
     opacity: 0.8;
-    transition: all 0.3s ease;
+    transition: var(--transition-base);
 }
 
 .payment-icons i:hover {
     opacity: 1;
-    color: var(--accent-gold);
+    color: var(--secondary);
     transform: scale(1.1);
 }
 
 /* Faculty Slider Section */
 .faculty-slider-section {
-    background-color: var(--section-light-grey);
+    background-color: var(--light-grey);
     padding: 100px 0;
 }
 
@@ -756,7 +850,7 @@ section {
 
 .faculty-slider-section .section-header h2 {
     font-size: 2.5em;
-    color: var(--primary-green);
+    color: var(--primary);
     margin-bottom: 20px;
     position: relative;
     display: inline-block;
@@ -770,12 +864,12 @@ section {
     transform: translateX(-50%);
     width: 80px;
     height: 3px;
-    background: linear-gradient(90deg, var(--primary-green), var(--accent-gold));
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
     border-radius: 2px;
 }
 
 .faculty-slider-section .section-subtitle {
-    color: var(--text-medium-grey);
+    color: var(--text-secondary);
     font-size: 1.15em;
     max-width: 550px;
     margin: 25px auto 0;
@@ -792,7 +886,7 @@ section {
     padding: 20px 10px 30px;
     margin-top: 50px;
     scrollbar-width: thin;
-    scrollbar-color: var(--primary-green) var(--border-light-grey);
+    scrollbar-color: var(--primary) var(--medium-grey);
 }
 
 .faculty-slider-container::-webkit-scrollbar {
@@ -800,36 +894,35 @@ section {
 }
 
 .faculty-slider-container::-webkit-scrollbar-track {
-    background: var(--border-light-grey);
+    background: var(--medium-grey);
     border-radius: 4px;
 }
 
 .faculty-slider-container::-webkit-scrollbar-thumb {
-    background: var(--primary-green);
+    background: var(--primary);
     border-radius: 4px;
 }
 
 .faculty-card {
     flex: 0 0 280px;
     scroll-snap-align: start;
-    background-color: var(--light-background);
+    background-color: var(--white);
     padding: 0;
-    border-radius: 16px;
+    border-radius: var(--radius-lg);
     overflow: hidden;
-    border: none;
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
-    box-shadow: 0 10px 40px var(--shadow-light);
+    box-shadow: var(--shadow-sm);
     text-align: center;
-    transition: all 0.4s ease;
-    border: 1px solid var(--border-light-grey);
+    transition: var(--transition-base);
+    border: 1px solid var(--medium-grey);
 }
 
 .faculty-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 15px 40px rgba(46, 125, 50, 0.15);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--secondary);
 }
 
-/* Green accent line at bottom of image */
+/* Brand accent line at bottom of image */
 .faculty-img-wrapper::after {
     content: '';
     position: absolute;
@@ -837,7 +930,7 @@ section {
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, var(--primary-green), var(--accent-gold));
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
     z-index: 2;
 }
 
@@ -847,7 +940,7 @@ section {
     width: 100%;
     height: 280px;
     overflow: hidden;
-    background: linear-gradient(135deg, var(--primary-green-light) 0%, var(--primary-green) 100%);
+    background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
 }
 
 .faculty-img-wrapper img {
@@ -871,9 +964,9 @@ section {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(to top, rgba(46, 125, 50, 0.9) 0%, transparent 60%);
+    background: linear-gradient(to top, rgba(75, 0, 43, 0.9) 0%, transparent 60%);
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: var(--transition-base);
     display: flex;
     align-items: flex-end;
     justify-content: center;
@@ -890,16 +983,16 @@ section {
     justify-content: center;
     width: 40px;
     height: 40px;
-    background: #fff;
+    background: var(--white);
     border-radius: 50%;
-    color: var(--primary-green);
+    color: var(--primary);
     font-size: 1.2em;
-    transition: all 0.3s ease;
+    transition: var(--transition-base);
     text-decoration: none;
 }
 
 .faculty-social a:hover {
-    background: var(--accent-gold);
+    background: var(--secondary);
     color: #fff;
     transform: scale(1.1);
 }
@@ -908,56 +1001,54 @@ section {
 .faculty-info {
     padding: 20px 18px 25px;
     text-align: center;
-    background: var(--light-background);
+    background: var(--white);
     position: relative;
 }
 
 .faculty-card h3 {
     font-size: 1.1em;
-    color: var(--text-dark-grey);
+    color: var(--text-primary);
     margin-bottom: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 700;
-    gap: 6px;
-    justify-content: center;
     gap: 8px;
 }
 
 .faculty-card h3 i {
-    color: var(--primary-green);
+    color: var(--primary);
     font-size: 0.9em;
 }
 
 .faculty-card .designation {
-    color: var(--primary-green);
+    color: var(--primary);
     font-size: 0.9em;
     margin-bottom: 10px;
     font-weight: 600;
 }
 
 .faculty-card .experience {
-    color: var(--text-medium-grey);
+    color: var(--text-secondary);
     font-size: 0.75em;
-    background: var(--section-light-grey);
+    background: var(--light-grey);
     padding: 6px 14px;
-    border-radius: 20px;
+    border-radius: var(--radius-full);
     display: inline-flex;
     align-items: center;
     gap: 5px;
     margin: 0;
-    border: 1px solid var(--border-light-grey);
+    border: 1px solid var(--medium-grey);
 }
 
 .faculty-card .experience i {
-    color: var(--accent-gold);
+    color: var(--secondary);
     font-size: 0.9em;
 }
 
 /* Testimonials Section */
 .testimonials-section {
-    background-color: var(--light-background);
+    background-color: var(--white);
     padding: 100px 0;
 }
 
@@ -970,7 +1061,7 @@ section {
     padding: 20px 10px 30px;
     margin-top: 50px;
     scrollbar-width: thin;
-    scrollbar-color: var(--primary-green) var(--border-light-grey);
+    scrollbar-color: var(--primary) var(--medium-grey);
 }
 
 .testimonial-slider::-webkit-scrollbar {
@@ -978,26 +1069,26 @@ section {
 }
 
 .testimonial-slider::-webkit-scrollbar-track {
-    background: var(--border-light-grey);
+    background: var(--medium-grey);
     border-radius: 4px;
 }
 
 .testimonial-slider::-webkit-scrollbar-thumb {
-    background: var(--primary-green);
+    background: var(--primary);
     border-radius: 4px;
 }
 
 .testimonial-card {
     flex: 0 0 380px;
     scroll-snap-align: start;
-    background-color: var(--section-light-grey);
+    background-color: var(--light-grey);
     padding: 40px 30px;
-    border-radius: 20px;
-    box-shadow: 0 10px 40px var(--shadow-light);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
     text-align: center;
-    transition: all 0.4s ease;
+    transition: var(--transition-base);
     position: relative;
-    border: 1px solid var(--border-light-grey);
+    border: 1px solid var(--medium-grey);
 }
 
 .testimonial-card::before {
@@ -1008,31 +1099,32 @@ section {
     top: 20px;
     left: 25px;
     font-size: 2em;
-    color: var(--primary-green);
+    color: var(--primary);
     opacity: 0.2;
 }
 
 .testimonial-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 50px var(--shadow-medium);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--secondary);
 }
 
 .testimonial-card p {
     font-style: italic;
-    color: var(--text-medium-grey);
+    color: var(--text-secondary);
     margin-bottom: 25px;
     font-size: 1.05em;
     line-height: 1.8;
 }
 
 .testimonial-card h4 {
-    color: var(--primary-green);
+    color: var(--primary);
     font-size: 1.3em;
     margin-bottom: 5px;
 }
 
 .testimonial-card span {
-    color: var(--accent-gold);
+    color: var(--secondary-dark);
     font-size: 0.95em;
     font-weight: 500;
 }
@@ -1041,7 +1133,7 @@ section {
    About Page Styles
    ================================================ */
 .about-page-hero {
-    background: linear-gradient(135deg, var(--primary-green-dark) 0%, var(--primary-green) 100%);
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
     padding: 120px 0 80px;
     text-align: center;
     position: relative;
@@ -1060,7 +1152,7 @@ section {
 }
 
 .about-page-hero h1 {
-    color: var(--light-background);
+    color: var(--white);
     font-size: 3em;
     margin-bottom: 20px;
     position: relative;
@@ -1081,11 +1173,11 @@ section {
 }
 
 .about-us-content-section.section-even {
-    background-color: var(--light-background);
+    background-color: var(--white);
 }
 
 .about-us-content-section.section-odd {
-    background-color: var(--section-light-grey);
+    background-color: var(--light-grey);
 }
 
 .about-us-grid {
@@ -1110,12 +1202,12 @@ section {
 
 .about-text h3 {
     font-size: 1.8em;
-    color: var(--primary-green);
+    color: var(--primary);
     margin-bottom: 20px;
 }
 
 .about-text p {
-    color: var(--text-medium-grey);
+    color: var(--text-secondary);
     margin-bottom: 20px;
     font-size: 1.05em;
     line-height: 1.8;
@@ -1129,7 +1221,7 @@ section {
     width: 100%;
     height: 400px;
     object-fit: cover;
-    border-radius: 20px;
+    border-radius: var(--radius-xl);
     box-shadow: 0 20px 50px var(--shadow-medium);
 }
 
@@ -1140,7 +1232,7 @@ section {
     right: -15px;
     width: 100%;
     height: 100%;
-    border: 4px solid var(--primary-green);
+    border: 4px solid var(--primary);
     border-radius: 20px;
     z-index: -1;
 }
@@ -1154,13 +1246,13 @@ section {
 }
 
 .feature-card {
-    background-color: var(--light-background);
+    background-color: var(--white);
     padding: 40px 25px;
     border-radius: 16px;
     box-shadow: 0 10px 40px var(--shadow-light);
     text-align: center;
     transition: all 0.4s ease;
-    border: 1px solid var(--border-light-grey);
+    border: 1px solid var(--medium-grey);
 }
 
 .feature-card:hover {
@@ -1170,7 +1262,7 @@ section {
 
 .feature-card i {
     font-size: 2.5em;
-    color: var(--primary-green);
+    color: var(--primary);
     margin-bottom: 20px;
     display: inline-block;
     width: 70px;
@@ -1182,12 +1274,12 @@ section {
 
 .feature-card h3 {
     font-size: 1.2em;
-    color: var(--primary-green);
+    color: var(--primary);
     margin-bottom: 12px;
 }
 
 .feature-card p {
-    color: var(--text-medium-grey);
+    color: var(--text-secondary);
     font-size: 0.95em;
     line-height: 1.6;
 }
@@ -1196,13 +1288,13 @@ section {
    Contact Page Styles
    ================================================ */
 .contact-page-hero {
-    background: linear-gradient(135deg, var(--primary-green-dark) 0%, var(--primary-green) 100%);
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
     padding: 120px 0 80px;
     text-align: center;
 }
 
 .contact-page-hero h1 {
-    color: var(--light-background);
+    color: var(--white);
     font-size: 3em;
     margin-bottom: 20px;
 }
@@ -1216,7 +1308,7 @@ section {
 
 .contact-section {
     padding: 100px 0;
-    background-color: var(--section-light-grey);
+    background-color: var(--light-grey);
 }
 
 .contact-wrapper {
@@ -1226,22 +1318,22 @@ section {
 
 /* Modern Contact Form */
 .contact-form-card {
-    background-color: var(--light-background);
+    background-color: var(--white);
     padding: 50px;
-    border-radius: 24px;
-    box-shadow: 0 20px 60px var(--shadow-light);
-    border: 1px solid var(--border-light-grey);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--medium-grey);
 }
 
 .contact-form-card h3 {
     font-size: 2em;
-    color: var(--primary-green);
+    color: var(--primary);
     margin-bottom: 10px;
     text-align: center;
 }
 
 .contact-form-card > p {
-    color: var(--text-medium-grey);
+    color: var(--text-secondary);
     text-align: center;
     margin-bottom: 40px;
     font-size: 1.05em;
@@ -1267,7 +1359,7 @@ section {
     display: block;
     margin-bottom: 10px;
     font-weight: 600;
-    color: var(--text-dark-grey);
+    color: var(--text-primary);
     font-size: 0.95em;
 }
 
@@ -1276,21 +1368,21 @@ section {
 .form-group textarea {
     width: 100%;
     padding: 16px 20px;
-    border: 2px solid var(--border-light-grey);
-    border-radius: 12px;
+    border: 2px solid var(--medium-grey);
+    border-radius: var(--radius-md);
     font-size: 1em;
     font-family: 'Roboto', sans-serif;
-    transition: all 0.3s ease;
-    background-color: var(--section-light-grey);
+    transition: var(--transition-base);
+    background-color: var(--light-grey);
 }
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: var(--primary-green);
-    background-color: var(--light-background);
-    box-shadow: 0 0 0 4px rgba(46, 125, 50, 0.1);
+    border-color: var(--primary);
+    background-color: var(--white);
+    box-shadow: 0 0 0 4px rgba(75, 0, 43, 0.1);
 }
 
 .form-group input::placeholder,
@@ -1307,7 +1399,7 @@ section {
     position: absolute;
     right: 20px;
     top: 50px;
-    color: var(--text-medium-grey);
+    color: var(--text-secondary);
     pointer-events: none;
 }
 
@@ -1327,13 +1419,13 @@ section {
 }
 
 .contact-info-card {
-    background-color: var(--light-background);
+    background-color: var(--white);
     padding: 35px 25px;
     border-radius: 16px;
     box-shadow: 0 10px 40px var(--shadow-light);
     text-align: center;
     transition: all 0.4s ease;
-    border: 1px solid var(--border-light-grey);
+    border: 1px solid var(--medium-grey);
 }
 
 .contact-info-card:hover {
@@ -1343,7 +1435,7 @@ section {
 
 .contact-info-card i {
     font-size: 2em;
-    color: var(--primary-green);
+    color: var(--primary);
     margin-bottom: 20px;
     display: inline-block;
     width: 60px;
@@ -1355,12 +1447,12 @@ section {
 
 .contact-info-card h4 {
     font-size: 1.2em;
-    color: var(--primary-green);
+    color: var(--primary);
     margin-bottom: 10px;
 }
 
 .contact-info-card p {
-    color: var(--text-medium-grey);
+    color: var(--text-secondary);
     font-size: 0.95em;
     line-height: 1.6;
 }
@@ -1369,11 +1461,11 @@ section {
    Footer
    ================================================ */
 .footer {
-    background: linear-gradient(135deg, var(--primary-green-dark) 0%, var(--primary-green) 100%);
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
     color: rgba(255, 255, 255, 0.9);
     padding: 80px 0 30px 0;
     font-size: 0.95em;
-    box-shadow: 0 -5px 30px rgba(88, 0, 51, 0.2);
+    box-shadow: 0 -5px 30px rgba(75, 0, 43, 0.2);
 }
 
 .footer .container {
@@ -1383,14 +1475,30 @@ section {
 }
 
 .footer-col h3 {
-    color: var(--light-background);
+    color: var(--white);
     font-size: 1.4em;
     margin-bottom: 25px;
     font-family: 'Playfair Display', serif;
 }
 
+.footer-col h3.footer-logo {
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.footer-col h3.footer-logo a {
+    display: inline-block;
+}
+
+.footer-col h3.footer-logo img {
+    max-height: 44px;
+    max-width: 150px;
+    width: auto;
+    object-fit: contain;
+}
+
 .footer-col h3 span {
-    color: var(--accent-gold);
+    color: var(--secondary);
 }
 
 .footer-col p {
@@ -1410,14 +1518,14 @@ section {
 }
 
 .footer-col ul li a {
-    color: #aaa;
+    color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: var(--transition-base);
     display: inline-block;
 }
 
 .footer-col ul li a:hover {
-    color: var(--primary-green-light);
+    color: var(--secondary);
     padding-left: 5px;
 }
 
@@ -1429,7 +1537,7 @@ section {
 }
 
 .footer-contact-info i {
-    color: var(--accent-gold);
+    color: var(--secondary);
     margin-right: 12px;
     font-size: 1.1em;
     margin-top: 4px;
@@ -1446,18 +1554,18 @@ section {
     width: 40px;
     height: 40px;
     background-color: rgba(255, 255, 255, 0.15);
-    color: var(--light-background);
+    color: var(--white);
     border-radius: 50%;
     margin-right: 10px;
-    transition: all 0.3s ease;
+    transition: var(--transition-base);
     font-size: 1.1em;
 }
 
 .social-links a:hover {
-    background-color: var(--accent-gold);
-    color: var(--primary-green-dark);
+    background-color: var(--secondary);
+    color: var(--primary-dark);
     transform: translateY(-3px);
-    box-shadow: 0 4px 15px rgba(193, 174, 105, 0.4);
+    box-shadow: 0 4px 15px rgba(194, 177, 105, 0.4);
 }
 
 .newsletter-signup form {
@@ -1468,12 +1576,12 @@ section {
 
 .newsletter-signup input[type="email"] {
     padding: 14px 18px;
-    border-radius: 10px;
+    border-radius: var(--radius-md);
     border: 2px solid rgba(255, 255, 255, 0.2);
     background-color: rgba(255, 255, 255, 0.15);
-    color: var(--light-background);
+    color: var(--white);
     font-size: 1em;
-    transition: all 0.3s ease;
+    transition: var(--transition-base);
 }
 
 .newsletter-signup input[type="email"]::placeholder {
@@ -1483,14 +1591,20 @@ section {
 .newsletter-signup input[type="email"]:focus {
     outline: none;
     background-color: rgba(255, 255, 255, 0.25);
-    border-color: var(--accent-gold);
-    box-shadow: 0 0 0 3px rgba(193, 174, 105, 0.2);
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 3px rgba(194, 177, 105, 0.2);
 }
 
 .newsletter-signup button {
-    color: white;
-    border-radius: 10px;
+    background: linear-gradient(135deg, var(--secondary), var(--secondary-light));
+    color: var(--primary-dark);
+    border-radius: var(--radius-md);
     padding: 14px 20px;
+    font-weight: 600;
+}
+
+.newsletter-signup button:hover {
+    background: linear-gradient(135deg, var(--secondary-dark), var(--secondary));
 }
 
 .footer-bottom {
@@ -1509,11 +1623,11 @@ section {
     color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
     margin: 0 15px;
-    transition: color 0.3s ease;
+    transition: var(--transition-base);
 }
 
 .footer-bottom .footer-links a:hover {
-    color: var(--accent-gold);
+    color: var(--secondary);
 }
 
 .payment-footer-icons {
@@ -1528,18 +1642,13 @@ section {
     font-size: 2em;
     color: rgba(255, 255, 255, 0.5);
     opacity: 0.8;
-    transition: all 0.3s ease;
+    transition: var(--transition-base);
 }
 
 .payment-footer-icons i:hover {
     opacity: 1;
-    color: var(--accent-gold);
+    color: var(--secondary);
     transform: scale(1.1);
-}
-
-.payment-footer-icons i:hover {
-    opacity: 1;
-    color: var(--primary-green-light);
 }
 
 /* ================================================
@@ -1562,9 +1671,9 @@ section {
     align-items: flex-start;
     gap: 15px;
     padding: 18px 20px;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
+    background: var(--white);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
     pointer-events: all;
     transform: translateX(120%);
     opacity: 0;
@@ -1585,7 +1694,7 @@ section {
 
 /* Toaster Types */
 .toaster.success {
-    border-left: 4px solid var(--primary-green);
+    border-left: 4px solid var(--primary);
 }
 
 .toaster.error {
@@ -1593,7 +1702,7 @@ section {
 }
 
 .toaster.warning {
-    border-left: 4px solid #f39c12;
+    border-left: 4px solid var(--secondary);
 }
 
 .toaster.info {
@@ -1613,8 +1722,8 @@ section {
 }
 
 .toaster.success .toaster-icon {
-    background: rgba(46, 125, 50, 0.1);
-    color: var(--primary-green);
+    background: rgba(75, 0, 43, 0.1);
+    color: var(--primary);
 }
 
 .toaster.error .toaster-icon {
@@ -1623,8 +1732,8 @@ section {
 }
 
 .toaster.warning .toaster-icon {
-    background: rgba(243, 156, 18, 0.1);
-    color: #f39c12;
+    background: rgba(194, 177, 105, 0.15);
+    color: var(--secondary-dark);
 }
 
 .toaster.info .toaster-icon {
@@ -1640,13 +1749,13 @@ section {
 .toaster-title {
     font-weight: 700;
     font-size: 1em;
-    color: #333;
+    color: var(--text-primary);
     margin-bottom: 4px;
 }
 
 .toaster-message {
     font-size: 0.9em;
-    color: #666;
+    color: var(--text-secondary);
     line-height: 1.5;
     margin: 0;
 }
@@ -1660,19 +1769,19 @@ section {
     height: 24px;
     border: none;
     background: transparent;
-    color: #999;
+    color: var(--dark-grey);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    transition: all 0.3s ease;
+    transition: var(--transition-base);
     font-size: 0.85em;
 }
 
 .toaster-close:hover {
-    background: #f0f0f0;
-    color: #333;
+    background: var(--light-grey);
+    color: var(--text-primary);
 }
 
 /* Progress Bar */
@@ -1692,7 +1801,7 @@ section {
 }
 
 .toaster.success .toaster-progress-bar {
-    background: var(--primary-green);
+    background: var(--primary);
 }
 
 .toaster.error .toaster-progress-bar {
@@ -1700,7 +1809,7 @@ section {
 }
 
 .toaster.warning .toaster-progress-bar {
-    background: #f39c12;
+    background: var(--secondary);
 }
 
 .toaster.info .toaster-progress-bar {
@@ -1751,27 +1860,27 @@ section {
 .message-toggle-btn {
     width: 60px;
     height: 60px;
-    background: linear-gradient(135deg, var(--primary-green), var(--primary-green-dark));
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     border: none;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 6px 25px rgba(46, 125, 50, 0.5);
-    transition: all 0.3s ease;
+    box-shadow: 0 6px 25px rgba(75, 0, 43, 0.4);
+    transition: var(--transition-base);
     position: relative;
 }
 
 .message-toggle-btn:hover {
     transform: scale(1.1);
-    box-shadow: 0 8px 30px rgba(46, 125, 50, 0.6);
+    box-shadow: 0 8px 30px rgba(75, 0, 43, 0.5);
 }
 
 .message-toggle-btn i {
     font-size: 1.6em;
-    color: #fff;
-    transition: all 0.3s ease;
+    color: var(--white);
+    transition: var(--transition-base);
 }
 
 .message-toggle-btn.active i.fa-comment-dots {
@@ -1841,7 +1950,7 @@ section {
     right: -5px;
     width: 22px;
     height: 22px;
-    background: var(--accent-gold);
+    background: var(--secondary);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1864,9 +1973,9 @@ section {
     bottom: 75px;
     left: 0;
     width: 340px;
-    background: #fff;
-    border-radius: 16px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
     opacity: 0;
     visibility: hidden;
     transform: translateY(20px) scale(0.95);
@@ -1882,7 +1991,7 @@ section {
 
 /* Message Header */
 .message-chat-header {
-    background: linear-gradient(135deg, var(--primary-green), var(--primary-green-dark));
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     padding: 20px 15px;
     text-align: center;
     position: relative;
@@ -1902,11 +2011,11 @@ section {
 
 .message-chat-header .header-avatar i {
     font-size: 1.5em;
-    color: #fff;
+    color: var(--white);
 }
 
 .message-chat-header h4 {
-    color: #fff;
+    color: var(--white);
     font-size: 1.15em;
     margin-bottom: 4px;
     font-family: 'Playfair Display', serif;
@@ -1925,9 +2034,9 @@ section {
     margin-top: 8px;
     padding: 4px 10px;
     background: rgba(255, 255, 255, 0.15);
-    border-radius: 20px;
+    border-radius: var(--radius-full);
     font-size: 0.7em;
-    color: #fff;
+    color: var(--white);
 }
 
 .message-chat-header .online-status .dot {
@@ -1984,13 +2093,13 @@ section {
     align-items: center;
     gap: 6px;
     font-size: 0.8em;
-    color: #666;
+    color: var(--dark-grey);
     margin-bottom: 10px;
     font-weight: 600;
 }
 
 .message-quick-options label i {
-    color: var(--primary-green);
+    color: var(--primary);
 }
 
 .quick-option-buttons {
@@ -2001,9 +2110,9 @@ section {
 
 .quick-option-btn {
     padding: 6px 12px;
-    border: 1px solid #ddd;
-    border-radius: 15px;
-    background: #fff;
+    border: 1px solid var(--medium-grey);
+    border-radius: var(--radius-full);
+    background: var(--white);
     cursor: pointer;
     font-size: 0.75em;
     color: #666;
@@ -2014,14 +2123,14 @@ section {
 }
 
 .quick-option-btn:hover {
-    border-color: var(--primary-green);
-    color: var(--primary-green);
+    border-color: var(--primary);
+    color: var(--primary);
     background: rgba(46, 125, 50, 0.05);
 }
 
 .quick-option-btn.selected {
-    border-color: var(--primary-green);
-    background: var(--primary-green);
+    border-color: var(--primary);
+    background: var(--primary);
     color: #fff;
 }
 
@@ -2031,10 +2140,10 @@ section {
 
 /* Message Form */
 .message-form-section {
-    background: #fff;
-    border-radius: 12px;
+    background: var(--white);
+    border-radius: var(--radius-md);
     padding: 15px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--shadow-xs);
 }
 
 .message-form-section .form-group {
@@ -2048,13 +2157,13 @@ section {
 .message-form-section label {
     display: block;
     font-size: 0.8em;
-    color: #555;
+    color: var(--text-secondary);
     margin-bottom: 6px;
     font-weight: 600;
 }
 
 .message-form-section label i {
-    color: var(--primary-green);
+    color: var(--primary);
     margin-right: 6px;
     font-size: 0.9em;
 }
@@ -2062,21 +2171,21 @@ section {
 .message-form-section input,
 .message-form-section textarea {
     width: 100%;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
+    border: 1px solid var(--medium-grey);
+    border-radius: var(--radius-sm);
     padding: 10px 12px;
     font-size: 0.9em;
     font-family: 'Roboto', sans-serif;
-    transition: all 0.3s ease;
-    color: #333;
+    transition: var(--transition-base);
+    color: var(--text-primary);
     box-sizing: border-box;
 }
 
 .message-form-section input:focus,
 .message-form-section textarea:focus {
     outline: none;
-    border-color: var(--primary-green);
-    box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.1);
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(75, 0, 43, 0.1);
 }
 
 .message-form-section textarea {
@@ -2099,8 +2208,8 @@ section {
 
 .contact-option-btn {
     padding: 10px 12px;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
+    border: 1px solid var(--medium-grey);
+    border-radius: var(--radius-sm);
     background: #fff;
     cursor: pointer;
     display: flex;
@@ -2124,12 +2233,12 @@ section {
 }
 
 .contact-option-btn.email {
-    color: var(--primary-green);
+    color: var(--primary);
 }
 
 .contact-option-btn.email:hover {
-    background: var(--primary-green);
-    border-color: var(--primary-green);
+    background: var(--primary);
+    border-color: var(--primary);
     color: #fff;
 }
 
@@ -2142,7 +2251,7 @@ section {
     width: 100%;
     margin-top: 12px;
     padding: 12px 20px;
-    background: linear-gradient(135deg, var(--primary-green), var(--primary-green-dark));
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     border: none;
     border-radius: 8px;
     color: #fff;
@@ -2177,7 +2286,7 @@ section {
 }
 
 .message-chat-footer i {
-    color: var(--primary-green);
+    color: var(--primary);
     margin-right: 4px;
 }
 
@@ -2352,9 +2461,9 @@ section {
     bottom: 75px;
     right: 0;
     width: 360px;
-    background: #fff;
-    border-radius: 20px;
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
     opacity: 0;
     visibility: hidden;
     transform: translateY(20px) scale(0.95);
@@ -2368,7 +2477,7 @@ section {
     transform: translateY(0) scale(1);
 }
 
-/* Chat Header */
+/* Chat Header - Keep WhatsApp green color for brand recognition */
 .whatsapp-chat-header {
     background: linear-gradient(135deg, #25D366, #128C7E);
     padding: 20px;
@@ -2681,7 +2790,7 @@ section {
         order: 3;
         margin-top: 20px;
         padding-top: 20px;
-        border-top: 1px solid var(--border-light-grey);
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
     }
     
     .main-nav.active {
@@ -2700,14 +2809,21 @@ section {
     .main-nav ul li a {
         padding: 15px 10px;
         border-radius: 0;
-        border-bottom: 1px solid var(--border-light-grey);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.9);
+    }
+    
+    .main-nav ul li a:hover,
+    .main-nav ul li a.active {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: var(--white);
     }
     
     .dropdown-content {
         position: static;
         box-shadow: none;
         border: none;
-        background-color: var(--section-light-grey);
+        background-color: rgba(255, 255, 255, 0.05);
         margin-top: 0;
         border-radius: 0;
         animation: none;
@@ -2719,6 +2835,12 @@ section {
     
     .dropdown-content a {
         padding-left: 30px;
+        color: rgba(255, 255, 255, 0.85);
+    }
+    
+    .dropdown-content a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: var(--secondary);
     }
     
     .mobile-menu-toggle {
@@ -2918,8 +3040,9 @@ section {
         padding: 5px 10px;
     }
     
-    .logo a {
-        font-size: 1.5em;
+    .logo a img {
+        max-height: 40px;
+        max-width: 140px;
     }
     
     .trial-button .btn {
@@ -2978,7 +3101,7 @@ section {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.75);
+    background: rgba(75, 0, 43, 0.85);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     display: flex;
@@ -2987,7 +3110,7 @@ section {
     z-index: 10000;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.4s ease;
+    transition: var(--transition-base);
     padding: 20px;
 }
 
@@ -2997,8 +3120,8 @@ section {
 }
 
 .welcome-popup {
-    background: linear-gradient(145deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-    border-radius: 24px;
+    background: linear-gradient(145deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%);
+    border-radius: var(--radius-xl);
     max-width: 520px;
     width: 100%;
     position: relative;
@@ -3020,7 +3143,7 @@ section {
     right: -50%;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(194, 177, 105, 0.15) 0%, transparent 70%);
     pointer-events: none;
 }
 
@@ -3031,7 +3154,7 @@ section {
     left: -30%;
     width: 60%;
     height: 60%;
-    background: radial-gradient(circle, rgba(46, 125, 50, 0.2) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(194, 177, 105, 0.1) 0%, transparent 70%);
     pointer-events: none;
 }
 
@@ -3073,9 +3196,9 @@ section {
 .welcome-popup-bismillah {
     font-family: 'Amiri', 'Times New Roman', serif;
     font-size: 1.8em;
-    color: var(--accent-gold);
+    color: var(--secondary);
     margin-bottom: 10px;
-    text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+    text-shadow: 0 2px 10px rgba(194, 177, 105, 0.3);
     letter-spacing: 2px;
 }
 
@@ -3083,47 +3206,47 @@ section {
 .welcome-popup-icon {
     width: 80px;
     height: 80px;
-    background: linear-gradient(135deg, var(--primary-green), var(--primary-green-light));
+    background: linear-gradient(135deg, var(--secondary), var(--secondary-light));
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 25px;
-    box-shadow: 0 10px 30px rgba(46, 125, 50, 0.4);
+    box-shadow: 0 10px 30px rgba(194, 177, 105, 0.4);
     animation: pulseGlow 2s ease-in-out infinite;
 }
 
 @keyframes pulseGlow {
     0%, 100% {
-        box-shadow: 0 10px 30px rgba(46, 125, 50, 0.4);
+        box-shadow: 0 10px 30px rgba(194, 177, 105, 0.4);
     }
     50% {
-        box-shadow: 0 10px 40px rgba(46, 125, 50, 0.6), 0 0 20px rgba(46, 125, 50, 0.3);
+        box-shadow: 0 10px 40px rgba(194, 177, 105, 0.6), 0 0 20px rgba(194, 177, 105, 0.3);
     }
 }
 
 .welcome-popup-icon i {
     font-size: 2.2em;
-    color: #fff;
+    color: var(--primary-dark);
 }
 
 /* Heading */
 .welcome-popup-heading {
     font-family: 'Playfair Display', serif;
     font-size: 2em;
-    color: #fff;
+    color: var(--white);
     margin-bottom: 8px;
     font-weight: 600;
 }
 
 .welcome-popup-heading span {
-    color: var(--accent-gold);
+    color: var(--secondary);
 }
 
 /* Subheading */
 .welcome-popup-subheading {
     font-size: 1.3em;
-    color: var(--accent-gold);
+    color: var(--secondary);
     margin-bottom: 20px;
     font-weight: 600;
     display: flex;
@@ -3165,7 +3288,7 @@ section {
 }
 
 .welcome-popup-feature i {
-    color: var(--primary-green-light);
+    color: var(--secondary);
     font-size: 1.1em;
 }
 
@@ -3176,24 +3299,24 @@ section {
     justify-content: center;
     gap: 12px;
     padding: 18px 45px;
-    background: linear-gradient(135deg, var(--accent-gold), #c9a227);
-    color: #1a1a2e;
+    background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+    color: var(--primary-dark);
     font-size: 1.15em;
     font-weight: 700;
     border: none;
-    border-radius: 50px;
+    border-radius: var(--radius-full);
     cursor: pointer;
     text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+    transition: var(--transition-base);
+    box-shadow: 0 8px 25px rgba(194, 177, 105, 0.4);
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
 .welcome-popup-cta:hover {
     transform: translateY(-3px);
-    box-shadow: 0 12px 35px rgba(212, 175, 55, 0.5);
-    background: linear-gradient(135deg, #e6c84a, var(--accent-gold));
+    box-shadow: 0 12px 35px rgba(194, 177, 105, 0.5);
+    background: linear-gradient(135deg, var(--secondary-light), var(--secondary));
 }
 
 .welcome-popup-cta i {
@@ -3208,11 +3331,11 @@ section {
     font-size: 0.9em;
     text-decoration: none;
     cursor: pointer;
-    transition: color 0.3s ease;
+    transition: var(--transition-base);
 }
 
 .welcome-popup-skip:hover {
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--secondary);
 }
 
 /* Responsive */
@@ -3275,7 +3398,7 @@ section {
    Registration Page Styles
    ================================================ */
 .registration-page-hero {
-    background: linear-gradient(135deg, var(--primary-green-dark) 0%, var(--primary-green) 100%);
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
     padding: 100px 0 80px;
     text-align: center;
     position: relative;
@@ -3301,22 +3424,22 @@ section {
 .registration-page-hero .hero-icon {
     width: 90px;
     height: 90px;
-    background-color: var(--light-background);
+    background-color: var(--white);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 25px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow-lg);
 }
 
 .registration-page-hero .hero-icon i {
     font-size: 2.5em;
-    color: var(--primary-green);
+    color: var(--primary);
 }
 
 .registration-page-hero h1 {
-    color: var(--light-background);
+    color: var(--white);
     font-size: 2.8em;
     margin-bottom: 20px;
 }
@@ -3331,7 +3454,7 @@ section {
 
 .registration-section {
     padding: 80px 0 100px;
-    background-color: var(--section-light-grey);
+    background-color: var(--light-grey);
 }
 
 .registration-wrapper {
@@ -3343,11 +3466,11 @@ section {
 
 /* Registration Form Card */
 .registration-form-card {
-    background-color: var(--light-background);
+    background-color: var(--white);
     padding: 50px;
-    border-radius: 24px;
-    box-shadow: 0 15px 50px var(--shadow-light);
-    border: 1px solid var(--border-light-grey);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--medium-grey);
 }
 
 .form-header {
@@ -3357,7 +3480,7 @@ section {
 
 .form-header h3 {
     font-size: 1.8em;
-    color: var(--primary-green);
+    color: var(--primary);
     margin-bottom: 12px;
     display: flex;
     align-items: center;
@@ -3366,11 +3489,11 @@ section {
 }
 
 .form-header h3 i {
-    color: var(--accent-gold);
+    color: var(--secondary);
 }
 
 .form-header p {
-    color: var(--text-medium-grey);
+    color: var(--text-secondary);
     font-size: 1.05em;
     margin: 0;
 }
@@ -3398,12 +3521,12 @@ section {
     gap: 8px;
     margin-bottom: 10px;
     font-weight: 600;
-    color: var(--text-dark-grey);
+    color: var(--text-primary);
     font-size: 0.95em;
 }
 
 .registration-form .form-group label i {
-    color: var(--primary-green);
+    color: var(--primary);
     font-size: 0.95em;
     width: 18px;
 }
@@ -3418,21 +3541,21 @@ section {
 .registration-form .form-group textarea {
     width: 100%;
     padding: 16px 20px;
-    border: 2px solid var(--border-light-grey);
+    border: 2px solid var(--medium-grey);
     border-radius: 12px;
     font-size: 1em;
     font-family: 'Roboto', sans-serif;
     transition: all 0.3s ease;
-    background-color: var(--section-light-grey);
-    color: var(--text-dark-grey);
+    background-color: var(--light-grey);
+    color: var(--text-primary);
 }
 
 .registration-form .form-group input:focus,
 .registration-form .form-group select:focus,
 .registration-form .form-group textarea:focus {
     outline: none;
-    border-color: var(--primary-green);
-    background-color: var(--light-background);
+    border-color: var(--primary);
+    background-color: var(--white);
     box-shadow: 0 0 0 4px rgba(46, 125, 50, 0.1);
 }
 
@@ -3455,8 +3578,8 @@ section {
 }
 
 .registration-form .form-group select[multiple] option:checked {
-    background: linear-gradient(135deg, var(--primary-green), var(--primary-green-light));
-    color: var(--light-background);
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: var(--white);
 }
 
 .registration-form .form-group textarea {
@@ -3468,12 +3591,12 @@ section {
     display: block;
     margin-top: 8px;
     font-size: 0.85em;
-    color: var(--text-medium-grey);
+    color: var(--text-secondary);
 }
 
 .registration-form .help-text i {
     margin-right: 5px;
-    color: var(--primary-green);
+    color: var(--primary);
 }
 
 .registration-form .error-message {
@@ -3504,7 +3627,7 @@ section {
     gap: 12px;
     cursor: pointer;
     font-size: 0.95em;
-    color: var(--text-medium-grey);
+    color: var(--text-secondary);
     line-height: 1.5;
 }
 
@@ -3516,31 +3639,31 @@ section {
     width: 22px;
     height: 22px;
     min-width: 22px;
-    border: 2px solid var(--border-light-grey);
+    border: 2px solid var(--medium-grey);
     border-radius: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
-    background-color: var(--section-light-grey);
+    background-color: var(--light-grey);
     margin-top: 2px;
 }
 
 .checkbox-label input[type="checkbox"]:checked + .checkmark {
-    background: linear-gradient(135deg, var(--primary-green), var(--primary-green-light));
-    border-color: var(--primary-green);
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    border-color: var(--primary);
 }
 
 .checkbox-label input[type="checkbox"]:checked + .checkmark::after {
     content: '\f00c';
     font-family: 'Font Awesome 5 Free';
     font-weight: 900;
-    color: var(--light-background);
+    color: var(--white);
     font-size: 0.75em;
 }
 
 .checkbox-label a {
-    color: var(--primary-green);
+    color: var(--primary);
     text-decoration: none;
     font-weight: 500;
 }
@@ -3576,17 +3699,17 @@ section {
 
 .benefits-card,
 .contact-card {
-    background-color: var(--light-background);
+    background-color: var(--white);
     padding: 30px;
     border-radius: 20px;
     box-shadow: 0 10px 40px var(--shadow-light);
-    border: 1px solid var(--border-light-grey);
+    border: 1px solid var(--medium-grey);
 }
 
 .benefits-card h4,
 .contact-card h4 {
     font-size: 1.3em;
-    color: var(--primary-green);
+    color: var(--primary);
     margin-bottom: 20px;
     display: flex;
     align-items: center;
@@ -3595,7 +3718,7 @@ section {
 
 .benefits-card h4 i,
 .contact-card h4 i {
-    color: var(--accent-gold);
+    color: var(--secondary);
 }
 
 .benefits-list {
@@ -3609,8 +3732,8 @@ section {
     align-items: center;
     gap: 12px;
     padding: 12px 0;
-    border-bottom: 1px solid var(--border-light-grey);
-    color: var(--text-medium-grey);
+    border-bottom: 1px solid var(--medium-grey);
+    color: var(--text-secondary);
     font-size: 0.95em;
 }
 
@@ -3619,12 +3742,12 @@ section {
 }
 
 .benefits-list li i {
-    color: var(--primary-green);
+    color: var(--primary);
     font-size: 1.1em;
 }
 
 .contact-card p {
-    color: var(--text-medium-grey);
+    color: var(--text-secondary);
     margin-bottom: 20px;
     font-size: 0.95em;
     line-height: 1.6;
@@ -3635,12 +3758,12 @@ section {
     align-items: flex-start;
     gap: 12px;
     margin-bottom: 15px;
-    color: var(--text-medium-grey);
+    color: var(--text-secondary);
     font-size: 0.95em;
 }
 
 .contact-card .contact-item i {
-    color: var(--primary-green);
+    color: var(--primary);
     font-size: 1.1em;
     margin-top: 3px;
 }
@@ -3659,7 +3782,7 @@ section {
     width: 100%;
     padding: 14px 20px;
     background: linear-gradient(135deg, #25D366, #128C7E);
-    color: var(--light-background);
+    color: var(--white);
     text-decoration: none;
     border-radius: 12px;
     font-weight: 600;
@@ -3786,7 +3909,7 @@ section {
 }
 
 .modal-container {
-    background-color: var(--light-background);
+    background-color: var(--white);
     border-radius: 24px;
     width: 100%;
     max-width: 700px;
@@ -3803,7 +3926,7 @@ section {
 }
 
 .modal-header {
-    background: linear-gradient(135deg, var(--primary-green-dark), var(--primary-green));
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
     padding: 35px 40px;
     text-align: center;
     position: relative;
@@ -3813,7 +3936,7 @@ section {
 .modal-icon {
     width: 70px;
     height: 70px;
-    background-color: var(--light-background);
+    background-color: var(--white);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -3824,11 +3947,11 @@ section {
 
 .modal-icon i {
     font-size: 2em;
-    color: var(--primary-green);
+    color: var(--primary);
 }
 
 .modal-header h2 {
-    color: var(--light-background);
+    color: var(--white);
     font-size: 1.8em;
     margin-bottom: 10px;
 }
@@ -3851,7 +3974,7 @@ section {
     height: 40px;
     border: none;
     background-color: rgba(255, 255, 255, 0.2);
-    color: var(--light-background);
+    color: var(--white);
     border-radius: 50%;
     cursor: pointer;
     display: flex;
@@ -3898,12 +4021,12 @@ section {
     gap: 8px;
     margin-bottom: 10px;
     font-weight: 600;
-    color: var(--text-dark-grey);
+    color: var(--text-primary);
     font-size: 0.95em;
 }
 
 .registration-form .form-group label i {
-    color: var(--primary-green);
+    color: var(--primary);
     font-size: 0.9em;
 }
 
@@ -3912,20 +4035,20 @@ section {
 .registration-form .form-group textarea {
     width: 100%;
     padding: 14px 18px;
-    border: 2px solid var(--border-light-grey);
+    border: 2px solid var(--medium-grey);
     border-radius: 12px;
     font-size: 1em;
     font-family: 'Roboto', sans-serif;
     transition: all 0.3s ease;
-    background-color: var(--section-light-grey);
+    background-color: var(--light-grey);
 }
 
 .registration-form .form-group input:focus,
 .registration-form .form-group select:focus,
 .registration-form .form-group textarea:focus {
     outline: none;
-    border-color: var(--primary-green);
-    background-color: var(--light-background);
+    border-color: var(--primary);
+    background-color: var(--white);
     box-shadow: 0 0 0 4px rgba(46, 125, 50, 0.1);
 }
 
@@ -3947,15 +4070,15 @@ section {
 }
 
 .registration-form .form-group select[multiple] option:checked {
-    background: linear-gradient(135deg, var(--primary-green), var(--primary-green-light));
-    color: var(--light-background);
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: var(--white);
 }
 
 .registration-form .form-group small {
     display: block;
     margin-top: 6px;
     font-size: 0.85em;
-    color: var(--text-medium-grey);
+    color: var(--text-secondary);
 }
 
 .registration-form .form-group textarea {
