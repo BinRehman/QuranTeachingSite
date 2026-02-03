@@ -1,6 +1,41 @@
 // ================================================
-// QuranPath Institute - Main JavaScript
+// QuranPath Institute - Email via EmailJS
 // ================================================
+// Configure EmailJS: https://dashboard.emailjs.com/
+// 1. Create Gmail service (use App Password)
+// 2. Create template with {{form_name}} and {{email_body}}
+// 3. Set the IDs below
+// ================================================
+
+const EMAILJS_CONFIG = {
+    publicKey: 'YOUR_PUBLIC_KEY',
+    serviceID: 'YOUR_SERVICE_ID',
+    templateID: 'YOUR_TEMPLATE_ID'
+};
+
+async function sendEmailViaEmailJS(formName, emailBody) {
+    if (typeof emailjs === 'undefined') {
+        throw new Error('EmailJS script not loaded. Add the CDN script before script.js');
+    }
+    if (
+        !EMAILJS_CONFIG.publicKey ||
+        EMAILJS_CONFIG.publicKey === 'YOUR_PUBLIC_KEY' ||
+        !EMAILJS_CONFIG.serviceID ||
+        !EMAILJS_CONFIG.templateID
+    ) {
+        throw new Error('Configure EMAILJS_CONFIG in script.js with your EmailJS credentials');
+    }
+    const response = await emailjs.send(
+        EMAILJS_CONFIG.serviceID,
+        EMAILJS_CONFIG.templateID,
+        { form_name: formName, email_body: emailBody },
+        EMAILJS_CONFIG.publicKey
+    );
+    if (response.status !== 200) {
+        throw new Error(response.text || 'Email service error');
+    }
+    return response;
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     
@@ -238,19 +273,35 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
             submitBtn.disabled = true;
             
-            // Simulate form submission (replace with actual API call)
-            setTimeout(() => {
-                submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Registration Successful!';
-                submitBtn.style.background = 'linear-gradient(135deg, #2E7D32, #4CAF50)';
-                
-                // Reset form after success
-                setTimeout(() => {
-                    this.reset();
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
-                    submitBtn.style.background = '';
+            // Collect form data
+            const formData = {
+                fullName: this.querySelector('#fullName')?.value || '',
+                email: this.querySelector('#email')?.value || '',
+                phone: this.querySelector('#phone')?.value || '',
+                age: this.querySelector('#age')?.value || '',
+                gender: this.querySelector('#gender')?.value || '',
+                courses: Array.from(this.querySelector('#courses')?.selectedOptions || []).map(o => o.value),
+                address: this.querySelector('#address')?.value || '',
+                notes: this.querySelector('#notes')?.value || ''
+            };
+            
+            const coursesList = Array.isArray(formData.courses) ? formData.courses.join(', ') : formData.courses;
+            const emailBody = `[QuranPath] Student Registration\n\n` +
+                `Full Name: ${formData.fullName}\n` +
+                `Email: ${formData.email}\n` +
+                `Phone: ${formData.phone}\n` +
+                `Age: ${formData.age}\n` +
+                `Gender: ${formData.gender}\n` +
+                `Courses: ${coursesList}\n` +
+                `Address: ${formData.address}\n` +
+                `Notes: ${formData.notes}\n\n` +
+                `Submitted: ${new Date().toLocaleString()}`;
+            
+            sendEmailViaEmailJS('[QuranPath] Student Registration', emailBody)
+            .then(() => {
+                    submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Registration Successful!';
+                    submitBtn.style.background = 'linear-gradient(135deg, #2E7D32, #4CAF50)';
                     
-                    // Show success toaster
                     showToast({
                         type: 'success',
                         title: 'Registration Successful!',
@@ -258,12 +309,22 @@ document.addEventListener('DOMContentLoaded', () => {
                         duration: 6000
                     });
                     
-                    // Redirect after a delay
                     setTimeout(() => {
+                        this.reset();
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                        submitBtn.style.background = '';
                         window.location.href = 'index.html';
-                    }, 3000);
-                }, 1500);
-            }, 2000);
+                    }, 2500);
+            })
+            .catch(err => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                let errMsg = err.text || err.message || 'Failed to submit';
+                if (/invalid|public key|service|template/i.test(errMsg)) errMsg = 'EmailJS credentials are invalid. Update EMAILJS_CONFIG in script.js.';
+                else if (/network|fetch|failed/i.test(errMsg)) errMsg = 'Network error. Check your internet connection.';
+                showToast({ type: 'error', title: 'Submission Failed', message: errMsg, duration: 6000 });
+            });
         });
         
         // Remove error class on input
@@ -356,8 +417,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
             
-            // Default to UK number, user can change via main WhatsApp widget
-            const whatsappNumber = '447848008574';
+            // WhatsApp number for USA and UK
+            const whatsappNumber = '447836372841';
             const encodedMessage = encodeURIComponent(fullMessage);
             const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
             
@@ -433,41 +494,47 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
             
-            // Show loading state
             const originalText = msgSubmitBtn.innerHTML;
             msgSubmitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
             msgSubmitBtn.disabled = true;
             
-            // Simulate sending (replace with actual API call)
-            setTimeout(() => {
+            const emailBody = `[QuranPath] Message Widget\n\n` +
+                `Name: ${name}\n` +
+                `Email: ${email}\n\n` +
+                `Message:\n${message}\n\n` +
+                `Sent: ${new Date().toLocaleString()}`;
+            
+            sendEmailViaEmailJS('[QuranPath] New Message', emailBody)
+            .then(() => {
                 msgSubmitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Message Sent!';
                 msgSubmitBtn.style.background = 'linear-gradient(135deg, #2E7D32, #4CAF50)';
                 
-                setTimeout(() => {
-                    // Reset form
-                    if (msgUserName) msgUserName.value = '';
-                    if (msgUserEmail) msgUserEmail.value = '';
-                    if (msgUserMessage) msgUserMessage.value = 'Hello! I am interested in your Quran courses. Please guide me about the classes, timings, and fee structure.';
-                    quickOptionBtns.forEach(b => b.classList.remove('selected'));
-                    
-                    // Reset button
-                    msgSubmitBtn.innerHTML = originalText;
-                    msgSubmitBtn.disabled = false;
-                    msgSubmitBtn.style.background = '';
-                    
-                    // Close chat box
-                    if (messageChatBox) messageChatBox.classList.remove('active');
-                    if (messageToggleBtn) messageToggleBtn.classList.remove('active');
-                    
-                    // Show success toaster
-                    showToast({
-                        type: 'success',
-                        title: 'Message Sent!',
-                        message: 'Thank you! Your message has been sent. We will get back to you shortly.',
-                        duration: 5000
-                    });
-                }, 1500);
-            }, 2000);
+                if (msgUserName) msgUserName.value = '';
+                if (msgUserEmail) msgUserEmail.value = '';
+                if (msgUserMessage) msgUserMessage.value = 'Hello! I am interested in your Quran courses. Please guide me about the classes, timings, and fee structure.';
+                quickOptionBtns.forEach(b => b.classList.remove('selected'));
+                
+                if (messageChatBox) messageChatBox.classList.remove('active');
+                if (messageToggleBtn) messageToggleBtn.classList.remove('active');
+                
+                showToast({
+                    type: 'success',
+                    title: 'Message Sent!',
+                    message: 'Thank you! Your message has been sent. We will get back to you shortly.',
+                    duration: 5000
+                });
+                msgSubmitBtn.innerHTML = originalText;
+                msgSubmitBtn.disabled = false;
+                msgSubmitBtn.style.background = '';
+            })
+            .catch(err => {
+                msgSubmitBtn.innerHTML = originalText;
+                msgSubmitBtn.disabled = false;
+                let errMsg = err.text || err.message || 'Failed to send';
+                if (/invalid|public key|service|template/i.test(errMsg)) errMsg = 'EmailJS credentials are invalid. Update EMAILJS_CONFIG in script.js.';
+                else if (/network|fetch|failed/i.test(errMsg)) errMsg = 'Network error. Check your internet connection.';
+                showToast({ type: 'error', title: 'Failed to Send', message: errMsg, duration: 6000 });
+            });
         });
     }
     
@@ -501,7 +568,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const sendWhatsappBtn = document.getElementById('sendWhatsappMessage');
     const whatsappMessageInput = document.getElementById('whatsappMessage');
     
-    let selectedCountryNumber = '447848008574'; // Default UK number
+    let selectedCountryNumber = '447836372841'; // UK/USA number
     
     // Toggle WhatsApp Chat Box
     if (whatsappToggleBtn && whatsappChatBox) {
@@ -757,20 +824,48 @@ document.addEventListener('DOMContentLoaded', () => {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Get form elements
+            const formData = {
+                firstName: this.querySelector('#firstName')?.value?.trim() || '',
+                lastName: this.querySelector('#lastName')?.value?.trim() || '',
+                email: this.querySelector('#email')?.value?.trim() || '',
+                phone: this.querySelector('#phone')?.value?.trim() || '',
+                subject: this.querySelector('#subject')?.value || '',
+                message: this.querySelector('#message')?.value?.trim() || ''
+            };
+            
+            // Validation
+            const errors = [];
+            if (!formData.firstName) errors.push('First name is required');
+            if (!formData.lastName) errors.push('Last name is required');
+            if (!formData.email) errors.push('Email is required');
+            else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) errors.push('Enter a valid email address');
+            if (!formData.subject) errors.push('Please select a subject');
+            if (!formData.message) errors.push('Message is required');
+            
+            if (errors.length > 0) {
+                showToast({ type: 'error', title: 'Validation Error', message: errors[0], duration: 5000 });
+                return;
+            }
+            
             const submitBtn = this.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerHTML;
-            
-            // Show loading state
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
             submitBtn.disabled = true;
             
-            // Simulate form submission (replace with actual form handling)
-            setTimeout(() => {
+            const fullName = [formData.firstName, formData.lastName].filter(Boolean).join(' ');
+            const emailBody = `[QuranPath] Contact Us\n\n` +
+                `Name: ${fullName}\n` +
+                `Email: ${formData.email}\n` +
+                `Phone: ${formData.phone}\n` +
+                `Subject: ${formData.subject}\n\n` +
+                `Message:\n${formData.message}\n\n` +
+                `Submitted: ${new Date().toLocaleString()}`;
+            
+            sendEmailViaEmailJS('[QuranPath] Contact Us - ' + formData.subject, emailBody)
+            .then(() => {
                 submitBtn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
                 submitBtn.style.backgroundColor = '#2E7D32';
                 
-                // Show success toaster
                 showToast({
                     type: 'success',
                     title: 'Message Sent!',
@@ -778,14 +873,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     duration: 5000
                 });
                 
-                // Reset form
                 setTimeout(() => {
                     this.reset();
                     submitBtn.innerHTML = originalText;
                     submitBtn.disabled = false;
                     submitBtn.style.backgroundColor = '';
                 }, 2000);
-            }, 1500);
+            })
+            .catch(err => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                let errMsg = err.text || err.message || 'Failed to send';
+                if (/invalid|public key|service|template/i.test(errMsg)) errMsg = 'EmailJS credentials are invalid. Update EMAILJS_CONFIG in script.js.';
+                else if (/network|fetch|failed/i.test(errMsg)) errMsg = 'Network error. Check your internet connection.';
+                showToast({ type: 'error', title: 'Failed to Send', message: errMsg, duration: 6000 });
+            });
         });
     }
 
