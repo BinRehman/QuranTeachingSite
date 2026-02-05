@@ -577,9 +577,36 @@ section {
     transition: var(--transition-base);
 }
 
+.course-card-icon-img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 25px;
+    display: inline-block;
+    object-fit: contain;
+    padding: 12px;
+    background: linear-gradient(135deg, rgba(75, 0, 43, 0.08), rgba(194, 177, 105, 0.1));
+    border-radius: 50%;
+    transition: var(--transition-base);
+}
+
+/* Quran Reading icon – theme primary color (#4b002b) via CSS filter */
+.course-card-icon-theme {
+    filter: brightness(0) saturate(100%) invert(12%) sepia(73%) saturate(5000%) hue-rotate(268deg) brightness(95%) contrast(101%);
+    transition: var(--transition-base);
+}
+
 .course-card:hover i {
     background: linear-gradient(135deg, rgba(75, 0, 43, 0.15), rgba(194, 177, 105, 0.2));
     color: var(--secondary-dark);
+}
+
+.course-card:hover .course-card-icon-img {
+    background: linear-gradient(135deg, rgba(75, 0, 43, 0.15), rgba(194, 177, 105, 0.2));
+}
+
+/* Hover: icon tint to secondary (gold) */
+.course-card:hover .course-card-icon-theme {
+    filter: brightness(0) saturate(100%) invert(72%) sepia(35%) saturate(800%) hue-rotate(15deg) brightness(92%) contrast(88%);
 }
 
 .course-card h3 {
