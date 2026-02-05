@@ -141,6 +141,7 @@ h2::after {
     background: linear-gradient(135deg, var(--primary-dark), var(--primary));
     box-shadow: 0 6px 20px rgba(75, 0, 43, 0.35);
     transform: translateY(-3px);
+    color: var(--white);
 }
 
 .btn-gold,
@@ -154,6 +155,12 @@ h2::after {
 .btn-secondary:hover {
     background: linear-gradient(135deg, var(--secondary-dark), var(--secondary));
     box-shadow: 0 6px 20px rgba(194, 177, 105, 0.4);
+    color: var(--primary-dark);
+}
+
+/* Ensure primary buttons never get black text on hover (theme colors only) */
+a.btn:hover, .btn:hover, button.btn:hover {
+    color: var(--white);
 }
 
 /* Outline Button */
@@ -166,7 +173,7 @@ h2::after {
 
 .btn-outline:hover {
     background: var(--primary);
-    color: var(--white);
+    color: var(--white) !important;
     box-shadow: 0 4px 15px rgba(75, 0, 43, 0.25);
 }
 
@@ -255,7 +262,7 @@ h2::after {
     transform: rotate(180deg);
 }
 
-/* Dropdown Menu */
+/* Dropdown Menu - no gap so hover stays when moving to menu */
 .dropdown-content {
     display: none;
     position: absolute;
@@ -266,8 +273,9 @@ h2::after {
     box-shadow: var(--shadow-lg);
     z-index: 1000;
     border-radius: var(--radius-lg);
-    overflow: hidden;
-    margin-top: 10px;
+    overflow: visible;
+    margin-top: 0;
+    padding-top: 12px;
     border: 1px solid var(--medium-grey);
     animation: dropdownFadeIn var(--transition-base);
 }
@@ -283,10 +291,21 @@ h2::after {
     }
 }
 
+/* Invisible bridge so hover is not lost when moving from trigger to menu */
 .dropdown-content::before {
     content: '';
     position: absolute;
     top: 0;
+    left: 0;
+    right: 0;
+    height: 12px;
+    background: transparent;
+}
+
+.dropdown-content::after {
+    content: '';
+    position: absolute;
+    top: 12px;
     left: 20px;
     width: 50px;
     height: 3px;
@@ -307,7 +326,7 @@ h2::after {
 
 .main-nav .dropdown-content a:hover {
     background-color: var(--light-grey);
-    color: var(--primary);
+    color: var(--primary) !important;
     border-left-color: var(--secondary);
     padding-left: 25px;
 }
@@ -331,6 +350,7 @@ h2::after {
     background: linear-gradient(135deg, var(--secondary-light), var(--secondary));
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(194, 177, 105, 0.5);
+    color: var(--primary-dark);
 }
 
 /* Mobile Menu Toggle */
@@ -800,6 +820,10 @@ section {
     color: var(--white);
 }
 
+.plan-card .btn:hover {
+    color: var(--white);
+}
+
 /* Payment Methods Section */
 .payment-methods-section {
     background: linear-gradient(135deg, var(--primary-dark), var(--primary));
@@ -955,6 +979,26 @@ section {
 .faculty-card:hover .faculty-img-wrapper img {
     transform: scale(1.05);
     filter: brightness(1.05);
+}
+
+/* Faculty icon placeholder (men/women icons instead of photos) */
+.faculty-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+}
+
+.faculty-tutor-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    transition: var(--transition-base);
+}
+
+.faculty-card:hover .faculty-tutor-icon {
+    transform: scale(1.05);
 }
 
 /* Faculty Overlay */
@@ -1345,6 +1389,10 @@ section {
     gap: 25px;
 }
 
+.contact-form .form-row-single {
+    grid-template-columns: 1fr;
+}
+
 .form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1401,6 +1449,11 @@ section {
     top: 50px;
     color: var(--text-secondary);
     pointer-events: none;
+}
+
+.contact-form .btn,
+.contact-form .btn:hover {
+    color: var(--white) !important;
 }
 
 .contact-form .btn {
@@ -1605,6 +1658,7 @@ section {
 
 .newsletter-signup button:hover {
     background: linear-gradient(135deg, var(--secondary-dark), var(--secondary));
+    color: var(--primary-dark);
 }
 
 .footer-bottom {
@@ -2264,6 +2318,11 @@ section {
     gap: 8px;
     transition: all 0.3s ease;
     box-shadow: 0 3px 10px rgba(46, 125, 50, 0.3);
+}
+
+.message-submit-btn,
+.message-submit-btn:hover {
+    color: var(--white) !important;
 }
 
 .message-submit-btn:hover {
@@ -3673,6 +3732,11 @@ section {
 }
 
 /* Submit Button */
+.registration-form .btn-submit,
+.registration-form .btn-submit:hover {
+    color: var(--white) !important;
+}
+
 .registration-form .btn-submit {
     width: 100%;
     padding: 18px 40px;
@@ -4153,5 +4217,155 @@ section {
     .registration-form .form-group select,
     .registration-form .form-group textarea {
         padding: 12px 14px;
+    }
+}
+
+/* ================================================
+   Policy Modals (Terms, Refund, Privacy)
+   ================================================ */
+.policy-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(75, 0, 43, 0.85);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10001;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition-base);
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.policy-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.policy-modal {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    max-width: 640px;
+    width: 100%;
+    max-height: 90vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+    transform: scale(0.9) translateY(20px);
+    transition: all 0.4s ease;
+    position: relative;
+    margin: auto;
+}
+
+.policy-modal-overlay.active .policy-modal {
+    transform: scale(1) translateY(0);
+}
+
+.policy-modal-close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--white);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    transition: var(--transition-base);
+    z-index: 2;
+}
+
+.policy-modal-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    color: var(--white);
+    transform: rotate(90deg);
+}
+
+.policy-modal-header {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    padding: 28px 40px 24px;
+    text-align: center;
+}
+
+.policy-modal-header h2 {
+    color: var(--white);
+    font-size: 1.6em;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.policy-modal-header h2::after {
+    display: none;
+}
+
+.policy-modal-header h2 i {
+    color: var(--secondary);
+}
+
+.policy-modal-body {
+    padding: 32px 40px 40px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.policy-modal-body p,
+.policy-modal-body li {
+    color: var(--text-secondary);
+    line-height: 1.75;
+    margin-bottom: 14px;
+}
+
+.policy-modal-body h4 {
+    color: var(--primary);
+    font-size: 1.1em;
+    margin-top: 24px;
+    margin-bottom: 10px;
+}
+
+.policy-modal-body h4:first-of-type {
+    margin-top: 0;
+}
+
+.policy-inline-link {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.policy-inline-link:hover {
+    color: var(--primary-light);
+    text-decoration: underline;
+}
+
+@media (max-width: 576px) {
+    .policy-modal {
+        border-radius: 20px;
+        max-height: 85vh;
+    }
+    
+    .policy-modal-header {
+        padding: 24px 24px 20px;
+    }
+    
+    .policy-modal-header h2 {
+        font-size: 1.35em;
+    }
+    
+    .policy-modal-body {
+        padding: 24px 24px 32px;
     }
 }

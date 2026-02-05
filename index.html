@@ -79,11 +79,11 @@
                     <li class="dropdown">
                         <a href="#">More <i class="fas fa-chevron-down"></i></a>
                         <div class="dropdown-content">
-                            <a href="#">FAQs</a>
-                            <a href="#">Blogs</a>
-                            <a href="#">Privacy Policy</a>
-                            <a href="#">Refund Policy</a>
-                            <a href="#">Terms & Conditions</a>
+                            <a href="#" data-modal="faqModal">FAQs</a>
+                            <a href="#" data-modal="blogModal">Blogs</a>
+                            <a href="#" data-modal="privacyModal">Privacy Policy</a>
+                            <a href="#" data-modal="refundModal">Refund Policy</a>
+                            <a href="#" data-modal="termsModal">Terms & Conditions</a>
                         </div>
                     </li>
                 </ul>
@@ -334,8 +334,8 @@
             </div>
             <div class="faculty-slider-container">
                 <div class="faculty-card">
-                    <div class="faculty-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=900&fit=crop&crop=faces" alt="Qari Abdullah - Quran Tutor">
+                    <div class="faculty-img-wrapper faculty-icon-wrapper">
+                        <img src="assets/male-tutor-icon.png" alt="" class="faculty-tutor-icon" width="180" height="180">
                         <div class="faculty-overlay">
                             <div class="faculty-social">
                                 <a href="#"><i class="fab fa-whatsapp"></i></a>
@@ -349,8 +349,8 @@
                     </div>
                 </div>
                 <div class="faculty-card">
-                    <div class="faculty-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=900&fit=crop&crop=faces" alt="Ustadha Ayesha - Female Quran Teacher">
+                    <div class="faculty-img-wrapper faculty-icon-wrapper">
+                        <img src="assets/female-tutor-icon.png" alt="" class="faculty-tutor-icon" width="180" height="180">
                         <div class="faculty-overlay">
                             <div class="faculty-social">
                                 <a href="#"><i class="fab fa-whatsapp"></i></a>
@@ -364,8 +364,8 @@
                     </div>
                 </div>
                 <div class="faculty-card">
-                    <div class="faculty-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=800&h=900&fit=crop&crop=faces" alt="Hafiz Bilal - Tajweed Specialist">
+                    <div class="faculty-img-wrapper faculty-icon-wrapper">
+                        <img src="assets/male-tutor-icon.png" alt="" class="faculty-tutor-icon" width="180" height="180">
                         <div class="faculty-overlay">
                             <div class="faculty-social">
                                 <a href="#"><i class="fab fa-whatsapp"></i></a>
@@ -379,8 +379,8 @@
                     </div>
                 </div>
                 <div class="faculty-card">
-                    <div class="faculty-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=800&h=900&fit=crop&crop=faces" alt="Ustadha Fatima - Hifz Teacher">
+                    <div class="faculty-img-wrapper faculty-icon-wrapper">
+                        <img src="assets/female-tutor-icon.png" alt="" class="faculty-tutor-icon" width="180" height="180">
                         <div class="faculty-overlay">
                             <div class="faculty-social">
                                 <a href="#"><i class="fab fa-whatsapp"></i></a>
@@ -394,8 +394,8 @@
                     </div>
                 </div>
                 <div class="faculty-card">
-                    <div class="faculty-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=800&h=900&fit=crop&crop=faces" alt="Maulana Usman - Qaida & Reading Tutor">
+                    <div class="faculty-img-wrapper faculty-icon-wrapper">
+                        <img src="assets/male-tutor-icon.png" alt="" class="faculty-tutor-icon" width="180" height="180">
                         <div class="faculty-overlay">
                             <div class="faculty-social">
                                 <a href="#"><i class="fab fa-whatsapp"></i></a>
@@ -409,8 +409,8 @@
                     </div>
                 </div>
                 <div class="faculty-card">
-                    <div class="faculty-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800&h=900&fit=crop&crop=faces" alt="Ustadha Khadija - Kids Islamic Studies Teacher">
+                    <div class="faculty-img-wrapper faculty-icon-wrapper">
+                        <img src="assets/female-tutor-icon.png" alt="" class="faculty-tutor-icon" width="180" height="180">
                         <div class="faculty-overlay">
                             <div class="faculty-social">
                                 <a href="#"><i class="fab fa-whatsapp"></i></a>
@@ -463,9 +463,9 @@
                 <h3 class="footer-logo"><a href="index.html"><img src="assets/logo.png" alt="Your Quran Institute"></a></h3>
                 <p>Your Quran Institute exists to provide worldwide students with eminent education of the Holy Quran and the science behind each holy word. We are globally recognized for exceptional online teaching and outstanding support.</p>
                 <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.facebook.com/YourQuranInstitute" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.instagram.com/your_quran_institute?igsh=MXNwN2M5MDVibnI5Yw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     <a href="#"><i class="fab fa-linkedin-in"></i></a>
                     <a href="#"><i class="fab fa-youtube"></i></a>
                 </div>
@@ -484,10 +484,9 @@
             <div class="footer-col">
                 <h3>Contact Info</h3>
                 <div class="footer-contact-info">
-                    <div><i class="fas fa-phone-alt"></i> <span>UK: +44 7848 008574</span></div>
-                    <div><i class="fas fa-phone-alt"></i> <span>USA: +1 914 520 0321</span></div>
-                    <div><i class="fas fa-envelope"></i> <span>info@quranpath.com</span></div>
-                    <div><i class="fas fa-map-marker-alt"></i> <span>2 Frederick Street, Kings Cross, London, WC1X 0ND</span></div>
+                    <div><i class="fas fa-phone-alt"></i> <span>UK: +44 7836 372841</span></div>
+                    <div><i class="fas fa-envelope"></i> <span>yourquraninstitute2018@gmail.com</span></div>
+                    <div><i class="fas fa-map-marker-alt"></i> <span>84 Nooris Road, St6 7AT, Stoke on Tren, UK</span></div>
                 </div>
             </div>
             <div class="footer-col newsletter-signup">
@@ -502,9 +501,9 @@
         <div class="footer-bottom">
             <p>&copy; 2026 Your Quran Institute. All Rights Reserved.</p>
             <div class="footer-links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Refund Policy</a>
-                <a href="#">Terms & Conditions</a>
+                <a href="#" data-modal="privacyModal">Privacy Policy</a>
+                <a href="#" data-modal="refundModal">Refund Policy</a>
+                <a href="#" data-modal="termsModal">Terms & Conditions</a>
             </div>
             <div class="payment-footer-icons">
                 <i class="fab fa-cc-visa"></i>
@@ -550,18 +549,19 @@
                         </button>
                     </div>
                 </div>
-                <div class="message-form-section">
+                <form id="message-widget-form" class="message-form-section">
+                    <input type="hidden" name="title" value="Message from Website">
                     <div class="form-group">
-                        <label>Your Name</label>
-                        <input type="text" id="msgUserName" placeholder="Enter your name">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your name" required>
                     </div>
                     <div class="form-group">
-                        <label>Email Address</label>
-                        <input type="email" id="msgUserEmail" placeholder="Enter your email">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
                     </div>
                     <div class="form-group">
-                        <label>Your Message</label>
-                        <textarea id="msgUserMessage" placeholder="Type your message...">Hello! I am interested in your Quran courses. Please guide me.</textarea>
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" placeholder="Type your message..." rows="4">Hello! I am interested in your Quran courses. Please guide me.</textarea>
                     </div>
                     <div class="message-contact-options">
                         <a href="#" class="contact-option-btn whatsapp" id="msgSendWhatsApp">
@@ -571,10 +571,10 @@
                             <i class="fas fa-envelope"></i> Email
                         </a>
                     </div>
-                    <button type="button" class="message-submit-btn" id="msgSubmitBtn">
+                    <button type="submit" class="message-submit-btn" id="msgSubmitBtn">
                         <i class="fas fa-paper-plane"></i> Send Message
                     </button>
-                </div>
+                </form>
             </div>
             <div class="message-chat-footer">
                 <i class="fas fa-lock"></i> Your information is secure
@@ -652,8 +652,131 @@
         </button>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script src="script.js"></script>
+    <!-- FAQs Modal -->
+    <div class="policy-modal-overlay" id="faqModal" aria-hidden="true">
+        <div class="policy-modal">
+            <button class="policy-modal-close" data-close="faqModal" aria-label="Close"><i class="fas fa-times"></i></button>
+            <div class="policy-modal-header">
+                <h2><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
+            </div>
+            <div class="policy-modal-body">
+                <h4>How do I start the free trial?</h4>
+                <p>Fill out the registration form on our website. Our team will contact you within 24 hours to schedule your 3-day free trial with a qualified tutor.</p>
+                <h4>What do I need for online classes?</h4>
+                <p>You need a device (laptop, tablet, or phone) with internet, a camera, and microphone. We use Microsoft Teams for one-on-one classes.</p>
+                <h4>What are the class timings?</h4>
+                <p>We offer flexible timings to suit your schedule. Once you register, we will coordinate with you to fix convenient slots.</p>
+                <h4>Do you teach children?</h4>
+                <p>Yes. We have dedicated tutors for kids and offer courses like Qaida Noorania and Kids Islamic Studies in an engaging way.</p>
+                <h4>How do I pay?</h4>
+                <p>We accept major cards, PayPal, and other secure methods. Payment is monthly as per your chosen plan.</p>
+                <h4>Can I change my tutor?</h4>
+                <p>If you have a valid reason, we can arrange a different tutor subject to availability. Contact our support team.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blogs Modal -->
+    <div class="policy-modal-overlay" id="blogModal" aria-hidden="true">
+        <div class="policy-modal">
+            <button class="policy-modal-close" data-close="blogModal" aria-label="Close"><i class="fas fa-times"></i></button>
+            <div class="policy-modal-header">
+                <h2><i class="fas fa-blog"></i> Blogs & Updates</h2>
+            </div>
+            <div class="policy-modal-body">
+                <p><strong>Your Quran Institute</strong> blog and updates are coming soon. Here you will find articles on Quran learning tips, Tajweed, Islamic education for children, and institute news.</p>
+                <p>Until then, follow us on <a href="https://www.facebook.com/YourQuranInstitute" target="_blank" rel="noopener noreferrer">Facebook</a> and <a href="https://www.instagram.com/your_quran_institute?igsh=MXNwN2M5MDVibnI5Yw==" target="_blank" rel="noopener noreferrer">Instagram</a> for updates, or contact us with any questions.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms & Conditions Modal -->
+    <div class="policy-modal-overlay" id="termsModal" aria-hidden="true">
+        <div class="policy-modal">
+            <button class="policy-modal-close" data-close="termsModal" aria-label="Close"><i class="fas fa-times"></i></button>
+            <div class="policy-modal-header">
+                <h2><i class="fas fa-file-contract"></i> Terms & Conditions</h2>
+            </div>
+            <div class="policy-modal-body">
+                <p><strong>Welcome to Your Quran Institute.</strong> By accessing our website and using our online Quran teaching services, you agree to be bound by these Terms & Conditions.</p>
+                <h4>1. Services</h4>
+                <p>We provide one-on-one and group online Quran classes, including Qaida, Quran reading, Tajweed, memorization (Hifz), and Islamic studies. Classes are conducted via Microsoft Teams or other agreed platforms.</p>
+                <h4>2. Registration & Payment</h4>
+                <p>You must provide accurate information when registering. Fees are as displayed on our Pricing section. Payment is due as per your chosen plan (e.g., monthly). We accept major cards and PayPal.</p>
+                <h4>3. Free Trial</h4>
+                <p>We offer a 3-day free trial for new students. No payment is required for the trial. After the trial, you may choose to enroll in a paid plan.</p>
+                <h4>4. Cancellation & Refunds</h4>
+                <p>Cancellation and refunds are governed by our <a href="#" data-modal="refundModal" class="policy-inline-link">Refund Policy</a>. By enrolling, you accept that policy.</p>
+                <h4>5. Conduct</h4>
+                <p>Students and guardians must behave respectfully toward our tutors and staff. We reserve the right to suspend or terminate access for misconduct.</p>
+                <h4>6. Intellectual Property</h4>
+                <p>All course materials, logos, and content on this site are owned by Your Quran Institute and may not be copied or used without permission.</p>
+                <h4>7. Contact</h4>
+                <p>For questions about these Terms & Conditions, contact us at <strong>info@quranpath.com</strong> or via the contact details on our website.</p>
+                <p><em>Last updated: February 2026.</em></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Refund Policy Modal -->
+    <div class="policy-modal-overlay" id="refundModal" aria-hidden="true">
+        <div class="policy-modal">
+            <button class="policy-modal-close" data-close="refundModal" aria-label="Close"><i class="fas fa-times"></i></button>
+            <div class="policy-modal-header">
+                <h2><i class="fas fa-undo"></i> Refund Policy</h2>
+            </div>
+            <div class="policy-modal-body">
+                <p><strong>Your Quran Institute</strong> is committed to your satisfaction. Please read our refund policy below.</p>
+                <h4>1. Free Trial</h4>
+                <p>Our 3-day free trial does not require any payment. There is nothing to refund if you do not continue after the trial.</p>
+                <h4>2. After Enrollment</h4>
+                <p>If you are not satisfied with your first paid week of classes, you may request a full refund within 7 days of your first paid session. Refund requests must be sent in writing to <strong>info@quranpath.com</strong> with your full name and reason.</p>
+                <h4>3. Partial Refunds</h4>
+                <p>If you need to cancel after the first week, we do not offer refunds for the current month. You may cancel before the next billing cycle so that no further charges are made.</p>
+                <h4>4. Missed Classes</h4>
+                <p>If a class is missed due to our tutor’s unavailability, we will reschedule or credit that session. Missed classes due to the student’s absence are generally not refunded but may be rescheduled subject to our availability.</p>
+                <h4>5. Processing Time</h4>
+                <p>Approved refunds will be processed within 5–10 business days to the original payment method.</p>
+                <h4>6. Contact</h4>
+                <p>For any refund request or question, email us at <strong>info@quranpath.com</strong> or use our Contact page.</p>
+                <p><em>Last updated: February 2026.</em></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div class="policy-modal-overlay" id="privacyModal" aria-hidden="true">
+        <div class="policy-modal">
+            <button class="policy-modal-close" data-close="privacyModal" aria-label="Close"><i class="fas fa-times"></i></button>
+            <div class="policy-modal-header">
+                <h2><i class="fas fa-shield-alt"></i> Privacy Policy</h2>
+            </div>
+            <div class="policy-modal-body">
+                <p><strong>Your Quran Institute</strong> (“we”, “our”) respects your privacy. This policy explains how we collect, use, and protect your information when you use our website and services.</p>
+                <h4>1. Information We Collect</h4>
+                <p>We collect information you provide when registering (name, email, phone, age, address, course preferences) and when contacting us. We may also collect usage data (e.g., pages visited) to improve our site.</p>
+                <h4>2. How We Use Your Information</h4>
+                <p>We use your data to provide Quran classes, schedule sessions, send reminders, process payments, and respond to inquiries. We may send occasional updates about courses and offers if you have agreed or not opted out.</p>
+                <h4>3. Sharing of Information</h4>
+                <p>We do not sell your personal information. We may share data with trusted service providers (e.g., payment processors, email services) only to the extent needed to run our services. We may disclose information if required by law.</p>
+                <h4>4. Data Security</h4>
+                <p>We use reasonable technical and organizational measures to protect your data. Communication over the internet is not 100% secure; we encourage you to use secure connections and keep your login details private.</p>
+                <h4>5. Cookies & Similar Technologies</h4>
+                <p>Our website may use cookies and similar technologies to improve your experience and analyze site traffic. You can adjust your browser settings to limit or block cookies.</p>
+                <h4>6. Your Rights</h4>
+                <p>You may request access to, correction of, or deletion of your personal data by contacting us at <strong>info@quranpath.com</strong>. You may also opt out of marketing emails at any time.</p>
+                <h4>7. Children</h4>
+                <p>Our services may be used by minors under parental supervision. We do not knowingly collect data from children without consent from a parent or guardian.</p>
+                <h4>8. Changes</h4>
+                <p>We may update this Privacy Policy from time to time. The “Last updated” date at the bottom will reflect the latest version. Continued use of our services after changes means you accept the updated policy.</p>
+                <p><em>Last updated: February 2026.</em></p>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="emailjs.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

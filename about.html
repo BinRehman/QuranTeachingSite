@@ -37,11 +37,11 @@
                     <li class="dropdown">
                         <a href="#">More <i class="fas fa-chevron-down"></i></a>
                         <div class="dropdown-content">
-                            <a href="#">FAQs</a>
-                            <a href="#">Blogs</a>
-                            <a href="#">Privacy Policy</a>
-                            <a href="#">Refund Policy</a>
-                            <a href="#">Terms & Conditions</a>
+                            <a href="#" data-modal="faqModal">FAQs</a>
+                            <a href="#" data-modal="blogModal">Blogs</a>
+                            <a href="#" data-modal="privacyModal">Privacy Policy</a>
+                            <a href="#" data-modal="refundModal">Refund Policy</a>
+                            <a href="#" data-modal="termsModal">Terms & Conditions</a>
                         </div>
                     </li>
                 </ul>
@@ -164,9 +164,9 @@
                 <h3 class="footer-logo"><a href="index.html"><img src="logo.png" alt="Your Quran Institute"></a></h3>
                 <p>Your Quran Institute exists to provide worldwide students with eminent education of the Holy Quran and the science behind each holy word. We are globally recognized for exceptional online teaching and outstanding support.</p>
                 <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.facebook.com/YourQuranInstitute" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.instagram.com/your_quran_institute?igsh=MXNwN2M5MDVibnI5Yw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     <a href="#"><i class="fab fa-linkedin-in"></i></a>
                     <a href="#"><i class="fab fa-youtube"></i></a>
                 </div>
@@ -336,6 +336,52 @@
         <button class="whatsapp-toggle-btn" id="whatsappToggleBtn" aria-label="Open WhatsApp Chat">
             <i class="fab fa-whatsapp"></i>
         </button>
+    </div>
+
+    <!-- FAQs Modal -->
+    <div class="policy-modal-overlay" id="faqModal" aria-hidden="true">
+        <div class="policy-modal">
+            <button class="policy-modal-close" data-close="faqModal" aria-label="Close"><i class="fas fa-times"></i></button>
+            <div class="policy-modal-header"><h2><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2></div>
+            <div class="policy-modal-body">
+                <h4>How do I start the free trial?</h4>
+                <p>Fill out the registration form. Our team will contact you within 24 hours.</p>
+                <h4>What do I need?</h4>
+                <p>Device with internet, camera, and microphone. We use Microsoft Teams.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Blogs Modal -->
+    <div class="policy-modal-overlay" id="blogModal" aria-hidden="true">
+        <div class="policy-modal">
+            <button class="policy-modal-close" data-close="blogModal" aria-label="Close"><i class="fas fa-times"></i></button>
+            <div class="policy-modal-header"><h2><i class="fas fa-blog"></i> Blogs & Updates</h2></div>
+            <div class="policy-modal-body">
+                <p>Blog coming soon. Follow us on <a href="https://www.facebook.com/YourQuranInstitute" target="_blank" rel="noopener noreferrer">Facebook</a> and <a href="https://www.instagram.com/your_quran_institute?igsh=MXNwN2M5MDVibnI5Yw==" target="_blank" rel="noopener noreferrer">Instagram</a>.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Terms, Refund, Privacy modals (short) -->
+    <div class="policy-modal-overlay" id="termsModal" aria-hidden="true">
+        <div class="policy-modal">
+            <button class="policy-modal-close" data-close="termsModal" aria-label="Close"><i class="fas fa-times"></i></button>
+            <div class="policy-modal-header"><h2><i class="fas fa-file-contract"></i> Terms & Conditions</h2></div>
+            <div class="policy-modal-body"><p>By using our services you agree to our terms. Contact info@quranpath.com for questions.</p></div>
+        </div>
+    </div>
+    <div class="policy-modal-overlay" id="refundModal" aria-hidden="true">
+        <div class="policy-modal">
+            <button class="policy-modal-close" data-close="refundModal" aria-label="Close"><i class="fas fa-times"></i></button>
+            <div class="policy-modal-header"><h2><i class="fas fa-undo"></i> Refund Policy</h2></div>
+            <div class="policy-modal-body"><p>Free trial: no payment. Full refund within 7 days of first paid session. Contact info@quranpath.com.</p></div>
+        </div>
+    </div>
+    <div class="policy-modal-overlay" id="privacyModal" aria-hidden="true">
+        <div class="policy-modal">
+            <button class="policy-modal-close" data-close="privacyModal" aria-label="Close"><i class="fas fa-times"></i></button>
+            <div class="policy-modal-header"><h2><i class="fas fa-shield-alt"></i> Privacy Policy</h2></div>
+            <div class="policy-modal-body"><p>We respect your privacy and do not sell your data. Contact info@quranpath.com for your rights.</p></div>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>

@@ -225,109 +225,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // ================================================
-    // Student Registration Form (Registration Page)
+    // Student Registration Form – submission handled by emailjs.js (sendForm)
     // ================================================
     const studentRegistrationForm = document.getElementById('studentRegistrationForm');
-    
     if (studentRegistrationForm) {
-        studentRegistrationForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Validate form
-            let isValid = true;
-            const requiredFields = this.querySelectorAll('[required]');
-            
-            requiredFields.forEach(field => {
-                const formGroup = field.closest('.form-group');
-                if (!field.value || (field.type === 'checkbox' && !field.checked)) {
-                    if (formGroup) formGroup.classList.add('error');
-                    isValid = false;
-                } else {
-                    if (formGroup) formGroup.classList.remove('error');
-                }
-            });
-            
-            // Email validation
-            const emailField = this.querySelector('#email');
-            if (emailField && emailField.value) {
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(emailField.value)) {
-                    emailField.closest('.form-group').classList.add('error');
-                    isValid = false;
-                }
-            }
-            
-            if (!isValid) {
-                // Scroll to first error
-                const firstError = this.querySelector('.form-group.error');
-                if (firstError) {
-                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-                return;
-            }
-            
-            const submitBtn = this.querySelector('.btn-submit');
-            const originalText = submitBtn.innerHTML;
-            
-            // Show loading state
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
-            submitBtn.disabled = true;
-            
-            // Collect form data
-            const formData = {
-                fullName: this.querySelector('#fullName')?.value || '',
-                email: this.querySelector('#email')?.value || '',
-                phone: this.querySelector('#phone')?.value || '',
-                age: this.querySelector('#age')?.value || '',
-                gender: this.querySelector('#gender')?.value || '',
-                courses: Array.from(this.querySelector('#courses')?.selectedOptions || []).map(o => o.value),
-                address: this.querySelector('#address')?.value || '',
-                notes: this.querySelector('#notes')?.value || ''
-            };
-            
-            const coursesList = Array.isArray(formData.courses) ? formData.courses.join(', ') : formData.courses;
-            const emailBody = `[QuranPath] Student Registration\n\n` +
-                `Full Name: ${formData.fullName}\n` +
-                `Email: ${formData.email}\n` +
-                `Phone: ${formData.phone}\n` +
-                `Age: ${formData.age}\n` +
-                `Gender: ${formData.gender}\n` +
-                `Courses: ${coursesList}\n` +
-                `Address: ${formData.address}\n` +
-                `Notes: ${formData.notes}\n\n` +
-                `Submitted: ${new Date().toLocaleString()}`;
-            
-            sendEmailViaEmailJS('[QuranPath] Student Registration', emailBody)
-            .then(() => {
-                    submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Registration Successful!';
-                    submitBtn.style.background = 'linear-gradient(135deg, #2E7D32, #4CAF50)';
-                    
-                    showToast({
-                        type: 'success',
-                        title: 'Registration Successful!',
-                        message: 'Thank you for registering! Our team will contact you within 24 hours to schedule your free trial class.',
-                        duration: 6000
-                    });
-                    
-                    setTimeout(() => {
-                        this.reset();
-                        submitBtn.innerHTML = originalText;
-                        submitBtn.disabled = false;
-                        submitBtn.style.background = '';
-                        window.location.href = 'index.html';
-                    }, 2500);
-            })
-            .catch(err => {
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-                let errMsg = err.text || err.message || 'Failed to submit';
-                if (/invalid|public key|service|template/i.test(errMsg)) errMsg = 'EmailJS credentials are invalid. Update EMAILJS_CONFIG in script.js.';
-                else if (/network|fetch|failed/i.test(errMsg)) errMsg = 'Network error. Check your internet connection.';
-                showToast({ type: 'error', title: 'Submission Failed', message: errMsg, duration: 6000 });
-            });
-        });
-        
-        // Remove error class on input
         const formInputs = studentRegistrationForm.querySelectorAll('input, select, textarea');
         formInputs.forEach(input => {
             input.addEventListener('input', function() {
@@ -340,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-    
+
     // ================================================
     // Left Side Message Widget Functionality
     // ================================================
@@ -348,12 +249,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const messageChatBox = document.getElementById('messageChatBox');
     const closeMessageChat = document.getElementById('closeMessageChat');
     const quickOptionBtns = document.querySelectorAll('.quick-option-btn');
-    const msgUserMessage = document.getElementById('msgUserMessage');
-    const msgUserName = document.getElementById('msgUserName');
-    const msgUserEmail = document.getElementById('msgUserEmail');
+    const msgWidgetForm = document.getElementById('message-widget-form');
+    const msgUserName = msgWidgetForm ? msgWidgetForm.querySelector('[name="name"]') : null;
+    const msgUserEmail = msgWidgetForm ? msgWidgetForm.querySelector('[name="email"]') : null;
+    const msgUserMessage = msgWidgetForm ? msgWidgetForm.querySelector('[name="message"]') : null;
     const msgSendWhatsApp = document.getElementById('msgSendWhatsApp');
     const msgSendEmail = document.getElementById('msgSendEmail');
-    const msgSubmitBtn = document.getElementById('msgSubmitBtn');
     
     // Toggle Message Chat Box
     if (messageToggleBtn && messageChatBox) {
@@ -462,82 +363,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // Submit Message Button (simulated form submission)
-    if (msgSubmitBtn) {
-        msgSubmitBtn.addEventListener('click', () => {
-            const name = msgUserName ? msgUserName.value.trim() : '';
-            const email = msgUserEmail ? msgUserEmail.value.trim() : '';
-            const message = msgUserMessage ? msgUserMessage.value.trim() : '';
-            
-            // Basic validation
-            let isValid = true;
-            
-            if (!name && msgUserName) {
-                msgUserName.style.borderColor = '#e74c3c';
-                isValid = false;
-            }
-            if (!email && msgUserEmail) {
-                msgUserEmail.style.borderColor = '#e74c3c';
-                isValid = false;
-            }
-            if (!message && msgUserMessage) {
-                msgUserMessage.style.borderColor = '#e74c3c';
-                isValid = false;
-            }
-            
-            if (!isValid) {
-                setTimeout(() => {
-                    if (msgUserName) msgUserName.style.borderColor = '';
-                    if (msgUserEmail) msgUserEmail.style.borderColor = '';
-                    if (msgUserMessage) msgUserMessage.style.borderColor = '';
-                }, 2000);
-                return;
-            }
-            
-            const originalText = msgSubmitBtn.innerHTML;
-            msgSubmitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            msgSubmitBtn.disabled = true;
-            
-            const emailBody = `[QuranPath] Message Widget\n\n` +
-                `Name: ${name}\n` +
-                `Email: ${email}\n\n` +
-                `Message:\n${message}\n\n` +
-                `Sent: ${new Date().toLocaleString()}`;
-            
-            sendEmailViaEmailJS('[QuranPath] New Message', emailBody)
-            .then(() => {
-                msgSubmitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Message Sent!';
-                msgSubmitBtn.style.background = 'linear-gradient(135deg, #2E7D32, #4CAF50)';
-                
-                if (msgUserName) msgUserName.value = '';
-                if (msgUserEmail) msgUserEmail.value = '';
-                if (msgUserMessage) msgUserMessage.value = 'Hello! I am interested in your Quran courses. Please guide me about the classes, timings, and fee structure.';
-                quickOptionBtns.forEach(b => b.classList.remove('selected'));
-                
-                if (messageChatBox) messageChatBox.classList.remove('active');
-                if (messageToggleBtn) messageToggleBtn.classList.remove('active');
-                
-                showToast({
-                    type: 'success',
-                    title: 'Message Sent!',
-                    message: 'Thank you! Your message has been sent. We will get back to you shortly.',
-                    duration: 5000
-                });
-                msgSubmitBtn.innerHTML = originalText;
-                msgSubmitBtn.disabled = false;
-                msgSubmitBtn.style.background = '';
-            })
-            .catch(err => {
-                msgSubmitBtn.innerHTML = originalText;
-                msgSubmitBtn.disabled = false;
-                let errMsg = err.text || err.message || 'Failed to send';
-                if (/invalid|public key|service|template/i.test(errMsg)) errMsg = 'EmailJS credentials are invalid. Update EMAILJS_CONFIG in script.js.';
-                else if (/network|fetch|failed/i.test(errMsg)) errMsg = 'Network error. Check your internet connection.';
-                showToast({ type: 'error', title: 'Failed to Send', message: errMsg, duration: 6000 });
-            });
+    // Message widget form submit is handled by emailjs.js (sends email to you)
+    // On success, emailjs.js shows toast and resets form; optionally close widget
+    if (msgWidgetForm) {
+        msgWidgetForm.addEventListener('submit', function() {
+            setTimeout(function() {
+                if (messageChatBox && messageChatBox.classList.contains('active')) {
+                    messageChatBox.classList.remove('active');
+                    if (messageToggleBtn) messageToggleBtn.classList.remove('active');
+                }
+            }, 1500);
         });
     }
-    
+
     // Reset field border on input
     [msgUserName, msgUserEmail, msgUserMessage].forEach(field => {
         if (field) {
@@ -815,81 +653,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { passive: true });
     }
 
-    // ================================================
-    // Form Validation Enhancement
-    // ================================================
-    const contactForm = document.querySelector('.contact-form');
-    
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = {
-                firstName: this.querySelector('#firstName')?.value?.trim() || '',
-                lastName: this.querySelector('#lastName')?.value?.trim() || '',
-                email: this.querySelector('#email')?.value?.trim() || '',
-                phone: this.querySelector('#phone')?.value?.trim() || '',
-                subject: this.querySelector('#subject')?.value || '',
-                message: this.querySelector('#message')?.value?.trim() || ''
-            };
-            
-            // Validation
-            const errors = [];
-            if (!formData.firstName) errors.push('First name is required');
-            if (!formData.lastName) errors.push('Last name is required');
-            if (!formData.email) errors.push('Email is required');
-            else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) errors.push('Enter a valid email address');
-            if (!formData.subject) errors.push('Please select a subject');
-            if (!formData.message) errors.push('Message is required');
-            
-            if (errors.length > 0) {
-                showToast({ type: 'error', title: 'Validation Error', message: errors[0], duration: 5000 });
-                return;
-            }
-            
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            submitBtn.disabled = true;
-            
-            const fullName = [formData.firstName, formData.lastName].filter(Boolean).join(' ');
-            const emailBody = `[QuranPath] Contact Us\n\n` +
-                `Name: ${fullName}\n` +
-                `Email: ${formData.email}\n` +
-                `Phone: ${formData.phone}\n` +
-                `Subject: ${formData.subject}\n\n` +
-                `Message:\n${formData.message}\n\n` +
-                `Submitted: ${new Date().toLocaleString()}`;
-            
-            sendEmailViaEmailJS('[QuranPath] Contact Us - ' + formData.subject, emailBody)
-            .then(() => {
-                submitBtn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
-                submitBtn.style.backgroundColor = '#2E7D32';
-                
-                showToast({
-                    type: 'success',
-                    title: 'Message Sent!',
-                    message: 'Thank you for contacting us. We will respond to your inquiry shortly.',
-                    duration: 5000
-                });
-                
-                setTimeout(() => {
-                    this.reset();
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
-                    submitBtn.style.backgroundColor = '';
-                }, 2000);
-            })
-            .catch(err => {
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-                let errMsg = err.text || err.message || 'Failed to send';
-                if (/invalid|public key|service|template/i.test(errMsg)) errMsg = 'EmailJS credentials are invalid. Update EMAILJS_CONFIG in script.js.';
-                else if (/network|fetch|failed/i.test(errMsg)) errMsg = 'Network error. Check your internet connection.';
-                showToast({ type: 'error', title: 'Failed to Send', message: errMsg, duration: 6000 });
-            });
-        });
-    }
+    // Contact form submission is handled by emailjs.js (id="contact-form")
 
     // ================================================
     // Newsletter Form
@@ -990,6 +754,78 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.preventDefault();
             });
         }
+    });
+
+    // ================================================
+    // Policy Modals (Terms, Refund, Privacy)
+    // ================================================
+    document.querySelectorAll('[data-modal]').forEach(trigger => {
+        trigger.addEventListener('click', function(e) {
+            e.preventDefault();
+            const modalId = this.getAttribute('data-modal');
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('active');
+                modal.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+                if (mainNav && mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                    if (mobileMenuToggle) mobileMenuToggle.classList.remove('active');
+                }
+            }
+        });
+    });
+
+    document.querySelectorAll('[data-close]').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const modalId = this.getAttribute('data-close');
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('active');
+                modal.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+        });
+    });
+
+    // Close policy modal on overlay click
+    document.querySelectorAll('.policy-modal-overlay').forEach(overlay => {
+        overlay.addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('active');
+                this.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+        });
+    });
+
+    // Close policy modal on Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.policy-modal-overlay.active').forEach(modal => {
+                modal.classList.remove('active');
+                modal.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            });
+        }
+    });
+
+    // Inline links inside modals that open another modal: close current then open target
+    document.querySelectorAll('.policy-modal-body [data-modal]').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const openModal = this.closest('.policy-modal-overlay');
+            const targetId = this.getAttribute('data-modal');
+            const targetModal = document.getElementById(targetId);
+            if (openModal) {
+                openModal.classList.remove('active');
+                openModal.setAttribute('aria-hidden', 'true');
+            }
+            if (targetModal) {
+                targetModal.classList.add('active');
+                targetModal.setAttribute('aria-hidden', 'false');
+            }
+        });
     });
 });
 
